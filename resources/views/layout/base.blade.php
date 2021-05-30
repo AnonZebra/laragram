@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}">
-        <title>Laragram</title>
+        <link rel="shortcut icon" href="{{ url('favicon.ico') }}">
+        <title>Laragram: @yield('title')</title>
+        @yield('script-tags')
 
     </head>
     <body>
