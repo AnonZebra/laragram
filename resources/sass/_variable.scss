@@ -4,14 +4,15 @@ Sass variables for mymap app.
 modular scale used: 1.2
 https://www.modularscale.com/?1&rem&1.2
 */
-$primary-middle: #4285f4;
+$primary-middle: #42c5d4;
+$primary-light: scale-color($primary-middle, $lightness: 90%);
 
 $white: #fdfdfd;
 $strong-white: #fff;
 $light-grey: #f2f2f2;
 $black: #333;
 
-$container-background-color: #f8f8f8;
+$container-background-color: #fefefe;
 $body-background-color: $container-background-color;
 
 $modular-factor: 1.2;
@@ -35,6 +36,12 @@ $warning-color: #b33;
 $primary-button-color: $primary-middle;
 
 /* forms */
+$incorrect-color: $warning-color;
+$correct-color: #3b3;
+$inactive-input-color: $strong-white;
+$active-input-color: $white;
+$form-background-color: $primary-light;
+$input-placeholder-color: #b0b0b0;
 
 /* media tags */
 $small-screen-max-width: 900px;
