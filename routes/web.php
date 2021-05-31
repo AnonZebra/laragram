@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\LoginFormRequest;
+
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Locale\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,5 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'showLogin'])->name('showLogin');
 
 Route::post('/login', [AuthController::class, 'processLogin'])->name('processLogin');
+
+Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])->name('updateLocale');

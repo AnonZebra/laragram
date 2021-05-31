@@ -402,10 +402,96 @@ a {
   font-family: 1rem;
 }
 
+/* Header */
+.site-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  background-color: #42c5d4;
+  color: #fdfdfd;
+  padding: 0 2em;
+  align-items: center;
+  min-height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  grid-area: header;
+}
+
+.site-header a,
+.site-header a:visited {
+  color: #fdfdfd;
+  font-family: Montserrat, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+.site-header a:hover,
+.site-header a:active {
+  background: none;
+  text-decoration: none;
+  color: #333;
+}
+
+nav {
+  padding: 0.3em 0;
+  text-align: left;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 0;
+  font-weight: bold;
+}
+
+.language-picker {
+  position: absolute;
+  top: 0;
+  background-color: #42c5d4;
+  border-style: solid;
+  border-color: #fdfdfd;
+  border-radius: 0.4rem;
+  text-align: center;
+  margin-left: 0;
+  padding: 0.2rem 2rem;
+  width: 10rem;
+}
+
+.language-picker > li:first-child {
+  display: block;
+}
+
+.language-picker > li:not(:first-child) {
+  display: none;
+}
+
+.language-picker-wrapper:hover > .language-picker {
+  border-color: #333;
+}
+
+.language-picker-wrapper:hover > .language-picker > li {
+  display: block;
+}
+
+.language-picker > li > a,
+.language-picker > li > a:visited {
+  color: #fdfdfd;
+}
+
+.language-picker > li > a:hover {
+  color: #333;
+}
+
 .message {
   border-radius: 2rem;
   padding: 0.2rem 2rem;
   margin: 0.2rem 0 1rem;
+  max-width: 95vw;
 }
 .message ul {
   padding-left: 0;
