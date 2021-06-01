@@ -1,0 +1,47 @@
+/*
+Sass variables for mymap app.
+
+modular scale used: 1.2
+https://www.modularscale.com/?1&rem&1.2
+*/
+$primary-middle: #42c5d4;
+$primary-light: scale-color($primary-middle, $lightness: 90%);
+
+$white: #fdfdfd;
+$strong-white: #fff;
+$light-grey: #f2f2f2;
+$black: #333;
+
+$container-background-color: #fefefe;
+$body-background-color: $container-background-color;
+
+$modular-factor: 1.2;
+$base-font-size: 1rem;
+$base-line-height: 1.4;
+$base-gap-size: $base-font-size * $base-line-height;
+$heading-font-family: 'Pacifico', cursive;
+$body-font-family: 'Rubik', sans-serif;
+
+$h1-font-size: $base-font-size * pow($modular-factor, 4);
+$h2-font-size: $base-font-size * pow($modular-factor, 3);
+$h3-font-size: $base-font-size * pow($modular-factor, 2);
+$h4-font-size: $base-font-size * $modular-factor;
+$base-text-color: $black;
+$inverted-text-color: $white;
+$gradient-base-lightness-shift: 20%;
+
+$warning-color: #b33;
+
+/* buttons */
+$primary-button-color: $primary-middle;
+
+/* forms */
+$incorrect-color: $warning-color;
+$correct-color: #3b3;
+$inactive-input-color: $strong-white;
+$active-input-color: $white;
+$form-background-color: $primary-light;
+$input-placeholder-color: #b0b0b0;
+
+/* media tags */
+$small-screen-max-width: 900px;
