@@ -21,13 +21,17 @@ class AuthController extends Controller
         return view('login.login_form');
     }
 
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
+
     /**
      * @param App\Http\Requests\LoginFormRequest $request
      */
     public function processLogin(LoginFormRequest $request)
     {
         $credentials = $request->only(['email', 'password']);
-        $user = User::getUserByEmail($credentials['email']);
+        $user = $this->user->getUserByEmail($credentials['email']);
 
         if ($user && $user->isLockedOut()) {
             return back()->withErrors([

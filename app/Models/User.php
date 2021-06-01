@@ -64,7 +64,6 @@ class User extends Authenticatable
         if ($lockedOut) {
             // check for how long the user has been locked out
             $lockedOutSec = now()->diffInSeconds($this->locked_at);
-            \Log::info($lockedOutSec);
             if ($lockedOutSec > self::LOCKOUT_TIME) {
                 $this->locked_flag = 0;
                 $this->error_count = 0;
@@ -82,7 +81,7 @@ class User extends Authenticatable
      * @param string email
      * @return boolean
      */
-    public static function getUserByEmail($email): User {
+    public static function getUserByEmail($email): ?User {
         return self::where('email', $email)->first();
     }
 
