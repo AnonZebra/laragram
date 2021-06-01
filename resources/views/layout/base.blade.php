@@ -12,7 +12,17 @@
     </head>
     <body>
         @include('layout.header')
+
         <main>
+            @if ($errors->any())
+                <div class="message warning-message">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('content')
         </main>
 

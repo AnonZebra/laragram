@@ -5,18 +5,15 @@
 @endsection
 
 @section('content')
-<h1>@yield('title')</h1>
-@if ($errors->any())
-    <div class="message alert-message">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+@if (session('logout_success'))
+<div class="message primary-message">
+    <p>{{ __("You are now logged out") }}</p>
+</div>
 @endif
 
-<form id="login-form" method="POST" class="regular-form" action="{{ route('processLogin') }}">
+<h1>@yield('title')</h1>
+
+<form id="login-form" method="POST" class="regular-form" action="{{ route('guest.processLogin') }}">
     @csrf
     <label for="email">{{ __("E-mail address") }}</label>
     <input id="email" type="text" name="email" placeholder="{{ __('jane@example.com') }}" pattern=".+@.+\..+" required>

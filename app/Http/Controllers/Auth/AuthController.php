@@ -29,11 +29,27 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('home');
+            return redirect(route('user.home'))
+                ->with(['login_success' => __("You are now logged in")]);
         }
 
         return back()->withErrors([
-            'email' => __("The provided credentials do not match our records."),
+            'login_error' => __("The provided credentials do not match our records."),
         ]);
+    }
+
+    /**
+     * @param App\Http\Requests\LoginFormRequest $request
+     */
+    public function processLogout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect(route('guest.showLogin'))
+            ->with(['logout_success' => __("You are now logged out")]);;
     }
 }

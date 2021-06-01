@@ -490,7 +490,7 @@ nav ul li {
 .message {
   border-radius: 2rem;
   padding: 0.2rem 2rem;
-  margin: 0.2rem 0 1rem;
+  margin: 1rem 0 1rem;
   max-width: 95vw;
 }
 .message ul {
@@ -498,9 +498,18 @@ nav ul li {
   margin-left: 1rem;
 }
 
-.alert-message {
+.warning-message {
   background-color: #b33;
   color: #fdfdfd;
+}
+
+.primary-message {
+  background-color: #42c5d4;
+  color: #fdfdfd;
+}
+
+.message p {
+  margin-bottom: 0;
 }
 
 form {
@@ -769,4 +778,15 @@ button {
 button,
 .add-secondary-button:hover {
   cursor: pointer;
+}
+
+.user-profile {
+  margin: 1rem 0;
+  background-color: #ecf9fb;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  border-radius: 0.4rem;
+  padding: 1rem 2rem;
+  text-align: center;
 }

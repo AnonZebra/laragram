@@ -21,12 +21,18 @@ use App\Http\Controllers\Locale\LocaleController;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::middleware(['guest'])->name('guest.')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('showLogin');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('showLogin');
+    Route::post('/login', [AuthController::class, 'processLogin'])->name('processLogin');
+});
 
-Route::post('/login', [AuthController::class, 'processLogin'])->name('processLogin');
+Route::middleware(['auth'])->name('user.')->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+
+    Route::get('/logout', [AuthController::class, 'processLogout'])->name('processLogout');
+});
 
 Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])->name('updateLocale');

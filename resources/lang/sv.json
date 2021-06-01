@@ -4,5 +4,11 @@
     "Password": "Lösenord",
     "Log in": "Logga in",
     "jane@example.com": "anna@example.se",
-    "Language": "Språk"
+    "Language": "Språk",
+    "You are now logged in": "Du är nu inloggad",
+    "Home": "Hem",
+    "Profile": "Profil",
+    "Name": "Namn",
+    "Log out": "Logga ut",
+    "You are now logged out": "Du är nu utloggad"
 }

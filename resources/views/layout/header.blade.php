@@ -1,9 +1,18 @@
 <header class="site-header">
     <nav>
         <ul>
+        @if (!Auth::user())
             <li>
-                <a href="{{ route('showLogin') }}">{{ __("Log in") }}</a>
+                <a href="{{ route('guest.showLogin') }}">{{ __("Log in") }}</a>
             </li>
+        @else
+            <li>
+                <a href="{{ route('user.home') }}">{{ __("Home") }}</a>
+            </li>
+            <li>
+                <a href="{{ route('user.processLogout') }}">{{ __("Log out") }}</a>
+            </li>
+        @endif
         </ul>
     </nav>
     <div class="language-picker-wrapper">

@@ -4,5 +4,11 @@
     "Password": "Password",
     "Log in": "Log in",
     "jane@example.com": "jane@example.com",
-    "Language": "Language"
+    "Language": "Language",
+    "You are now logged in": "You are now logged in",
+    "Home": "Home",
+    "Profile": "Profile",
+    "Name": "Name",
+    "Log out": "Log out",
+    "You are now logged out": "You are now logged out"
 }

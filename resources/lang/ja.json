@@ -4,5 +4,11 @@
     "Password": "パスワード",
     "Log in": "ログイン",
     "jane@example.com": "hana@example.jp",
-    "Language": "言語"
+    "Language": "言語",
+    "You are now logged in": "ログインが成功しました",
+    "Home": "ホーム",
+    "Profile": "プロフィール",
+    "Name": "名前",
+    "Log out": "ログアウト",
+    "You are now logged out": "ログアウトが成功しました"
 }
