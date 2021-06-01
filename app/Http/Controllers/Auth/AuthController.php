@@ -27,11 +27,9 @@ class AuthController extends Controller
     public function processLogin(LoginFormRequest $request)
     {
         $credentials = $request->only(['email', 'password']);
+        $user = User::getUserByEmail($credentials['email']);
 
-        $user = User::where('email', $credentials['email'])
-            ->first();
-        
-        if ($user && ($user->locked_flag == 1)) {
+        if ($user && $user->isLockedOut()) {
             return back()->withErrors([
                 'login_error' => __("The account is locked. Please try again in one minute."),
             ]);
@@ -40,25 +38,26 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            $user->error_count = 0;
-            $user->save();
+            $user->resetErrorCount();
 
             return redirect(route('user.home'))
                 ->with(['login_success' => __("You are now logged in")]);
         }
 
+        $errArr = [
+            'login_error' => __("The provided credentials do not match our records.")
+        ];
+
         if ($user) {
-            $user->error_count += 1;
-            if ($user->error_count > 5) {
-                $user->locked_flag = 1;
+            $lockedOut = $user->incrementErrorCount();
+            if ($lockedOut) {
+                $errArr = [
+                    'login_error' => __("toomanyloginattempts")
+                ];
             }
-            $user->save();
         }
 
-        return back()->withErrors([
-            'login_error' => __("The provided credentials do not match our records."),
-        ]);
+        return back()->withErrors($errArr);
     }
 
     /**

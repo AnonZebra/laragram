@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             ->unsigned()
             ->default(0);
             $table->timestamps();
+            $table->timestamp('locked_at')->nullable();
         });
     }
 

@@ -11,5 +11,6 @@
     "Name": "Namn",
     "Log out": "Logga ut",
     "You are now logged out": "Du är nu utloggad",
-    "The account is locked. Please try again in one minute.": "Kontot är låst. Vänligen försök igen om en minut."
+    "The account is locked. Please try again in one minute.": "Kontot är låst. Vänligen försök igen om en minut.",
+    "toomanyloginattempts": "Kontot har låsts till följd av att för många inloggningsförsök gjorts. Vänligen försök igen om en minut."
 }
