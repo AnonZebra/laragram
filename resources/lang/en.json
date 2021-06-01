@@ -10,5 +10,7 @@
     "Profile": "Profile",
     "Name": "Name",
     "Log out": "Log out",
-    "You are now logged out": "You are now logged out"
+    "You are now logged out": "You are now logged out",
+    "The account is locked. Please try again in one minute.": "The account is locked. Please try again in one minute.",
+    "toomanyloginattempts": "The account has been locked due to too many login attempts having been made. Please try again in 1 minute."
 }

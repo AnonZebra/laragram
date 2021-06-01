@@ -10,5 +10,7 @@
     "Profile": "プロフィール",
     "Name": "名前",
     "Log out": "ログアウト",
-    "You are now logged out": "ログアウトしました"
+    "You are now logged out": "ログアウトしました",
+    "The account is locked. Please try again in one minute.": "アカウントがロックされています。１分後またログインしてみて下さい。",
+    "toomanyloginattempts": "数回ログインしようとされた事が原因で、アカウントがロックされました。１分後またログインしてみて下さい。"
 }
