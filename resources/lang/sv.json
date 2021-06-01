@@ -10,5 +10,6 @@
     "Profile": "Profil",
     "Name": "Namn",
     "Log out": "Logga ut",
-    "You are now logged out": "Du är nu utloggad"
+    "You are now logged out": "Du är nu utloggad",
+    "The account is locked. Please try again in one minute.": "Kontot är låst. Vänligen försök igen om en minut."
 }
