@@ -6,9 +6,7 @@
 
 @section('content')
 @if (session('logout_success'))
-<div class="message primary-message">
-    <p>{{ __("You are now logged out") }}</p>
-</div>
+<x-alert type="primary" :message="session('logout_success')"/>
 @endif
 
 <h1>@yield('title')</h1>

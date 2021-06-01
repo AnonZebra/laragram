@@ -39,7 +39,8 @@ class AuthController extends Controller
     }
 
     /**
-     * @param App\Http\Requests\LoginFormRequest $request
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
     public function processLogout(Request $request)
     {

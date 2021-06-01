@@ -32,7 +32,7 @@ Route::middleware(['auth'])->name('user.')->group(function () {
         return view('home');
     })->name('home');
 
-    Route::get('/logout', [AuthController::class, 'processLogout'])->name('processLogout');
+    Route::post('/logout', [AuthController::class, 'processLogout'])->name('processLogout');
 });
 
 Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])->name('updateLocale');

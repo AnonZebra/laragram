@@ -664,6 +664,10 @@ input {
   content: none;
 }
 
+.single-button-form {
+  background-color: inherit;
+}
+
 @media only screen and (min-width: 800px) {
   form {
     min-width: 30%;
@@ -747,6 +751,12 @@ button {
   color: #42c5d4;
   background-color: inherit;
   border-color: #42c5d4;
+  transition: 0.2s;
+}
+
+.secondary-button:hover {
+  color: #24929f;
+  border-color: #24929f;
 }
 
 .floating-action-button {

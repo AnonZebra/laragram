@@ -34,6 +34,12 @@ button {
     color: $primary-button-color;
     background-color: inherit;
     border-color: $primary-button-color;
+    transition: 0.2s;
+}
+
+.secondary-button:hover {
+    color: scale-color($primary-button-color, $lightness: -30%);
+    border-color: scale-color($primary-button-color, $lightness: -30%);
 }
 
 .floating-action-button {

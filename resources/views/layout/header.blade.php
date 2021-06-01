@@ -9,9 +9,6 @@
             <li>
                 <a href="{{ route('user.home') }}">{{ __("Home") }}</a>
             </li>
-            <li>
-                <a href="{{ route('user.processLogout') }}">{{ __("Log out") }}</a>
-            </li>
         @endif
         </ul>
     </nav>
