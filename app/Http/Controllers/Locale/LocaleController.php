@@ -16,7 +16,8 @@ class LocaleController extends Controller
      * multi-language-functionality-in-web-554ca8dfa7e8
      * @param Illuminate\Http\Request $request
      */
-    public function updateLocale($language) {
+    public function updateLocale($language) 
+    {
         if (in_array($language, $this->ALLOWED_LOCALES)) {
             session(['locale'=> $language]);
         }

@@ -21,7 +21,8 @@ class AuthController extends Controller
         return view('login.login_form');
     }
 
-    public function __construct(User $user) {
+    public function __construct(User $user) 
+    {
         $this->user = $user;
     }
 
@@ -77,6 +78,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect(route('guest.showLogin'))
-            ->with(['logout_success' => __("You are now logged out")]);;
+            ->with(['logout_success' => __("You are now logged out")]);
     }
 }

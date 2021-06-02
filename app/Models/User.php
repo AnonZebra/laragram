@@ -58,7 +58,8 @@ class User extends Authenticatable
      * 
      * @return bool
      */
-    public function isLockedOut(): bool {
+    public function isLockedOut(): bool 
+    {
         // check if user is currently locked out
         $lockedOut = $this->locked_flag === 1;
         if ($lockedOut) {
@@ -79,9 +80,10 @@ class User extends Authenticatable
      * otherwise returns null.
      * 
      * @param string email
-     * @return boolean
+     * @return User
      */
-    public static function getUserByEmail($email): ?User {
+    public static function getUserByEmail($email): ?User 
+    {
         return self::where('email', $email)->first();
     }
 
@@ -93,7 +95,8 @@ class User extends Authenticatable
      * 
      * @return boolean
      */
-    public function incrementErrorCount(): bool {
+    public function incrementErrorCount(): bool 
+    {
         $lockedOut = false;
         $this->error_count++;
         if ($this->error_count > self::MAX_LOGIN_FAIL) {
@@ -111,7 +114,8 @@ class User extends Authenticatable
      * 
      * @return void
      */
-    public function resetErrorCount(): void {
+    public function resetErrorCount(): void 
+    {
         $this->error_count = 0;
         $this->save();
     }
