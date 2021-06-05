@@ -402,6 +402,14 @@ a {
   font-family: 1rem;
 }
 
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
 /* Header */
 .site-header {
   width: 100%;
@@ -441,12 +449,13 @@ nav ul {
   margin: 0;
   padding: 0;
 }
-
 nav ul li {
   display: inline-block;
-  margin-left: 1em;
   padding: 0;
   font-weight: bold;
+}
+nav ul li:not(:first-child) {
+  margin-left: 1em;
 }
 
 .language-picker {
@@ -458,24 +467,16 @@ nav ul li {
   border-radius: 0.4rem;
   text-align: center;
   margin-left: 0;
-  padding: 0.2rem 2rem;
-  width: 10rem;
+  padding: 0.2rem 0.2rem;
+  width: 4rem;
 }
 
 .language-picker > li:first-child {
   display: block;
 }
 
-.language-picker > li:not(:first-child) {
-  display: none;
-}
-
-.language-picker-wrapper:hover > .language-picker {
+.language-picker-wrapper > .language-picker.activated {
   border-color: #333;
-}
-
-.language-picker-wrapper:hover > .language-picker > li {
-  display: block;
 }
 
 .language-picker > li > a,
@@ -530,6 +531,7 @@ input {
   color: #333;
   padding: 0.6rem 1rem 1.2rem;
   border-radius: 0.4rem;
+  margin-bottom: 2rem;
 }
 .regular-form ::-moz-placeholder {
   color: #b0b0b0;
@@ -631,11 +633,11 @@ input {
 }
 
 .regular-form > .incorrect {
-  box-shadow: 0px 0px 4px 5px #b33;
+  box-shadow: 0px 0px 4px 5px #e29494;
 }
 
 .regular-form > .correct {
-  box-shadow: 0px 0px 4px 5px #3b3;
+  box-shadow: 0px 0px 3px 4px #94e294;
 }
 
 .regular-form > textarea {
@@ -735,6 +737,7 @@ button {
   text-align: center;
   border-radius: 0.2rem;
   line-height: 1.4;
+  text-decoration: none;
 }
 
 .primary-button {

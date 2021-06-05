@@ -16,6 +16,7 @@ input {
     color: $black;
     padding: $base-font-size * 0.6 $base-font-size * 1 $base-font-size * 1.2;
     border-radius: 0.4rem;
+    margin-bottom: 2rem;
 
     ::placeholder {
         color: $input-placeholder-color;
@@ -119,11 +120,11 @@ input {
 }
 
 .regular-form > .incorrect {
-    box-shadow: 0px 0px 4px 5px $incorrect-color;
+    box-shadow: 0px 0px 4px 5px scale-color($incorrect-color, $lightness: 50%);
 }
 
 .regular-form > .correct {
-    box-shadow: 0px 0px 4px 5px $correct-color;
+    box-shadow: 0px 0px 3px 4px scale-color($correct-color, $lightness: 50%);
 }
 
 .regular-form > textarea {

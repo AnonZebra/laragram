@@ -2,6 +2,7 @@
     "The provided credentials do not match our records.": "The provided credentials do not match our records.",
     "E-mail address": "E-mail address",
     "Password": "Password",
+    "Password (confirm)": "Password (confirm)",
     "Log in": "Log in",
     "jane@example.com": "jane@example.com",
     "Language": "Language",
@@ -12,5 +13,9 @@
     "Log out": "Log out",
     "You are now logged out": "You are now logged out",
     "The account is locked. Please try again in one minute.": "The account is locked. Please try again in one minute.",
-    "toomanyloginattempts": "The account has been locked due to too many login attempts having been made. Please try again in 1 minute."
+    "toomanyloginattempts": "The account has been locked due to too many login attempts having been made. Please try again in 1 minute.",
+    "Create account": "Create account",
+    "Register": "Register",
+    "An account for that e-mail already exists.": "An account for that e-mail already exists.",
+    "Jane Doe": "Jane Doe"
 }

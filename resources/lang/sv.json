@@ -2,6 +2,7 @@
     "The provided credentials do not match our records.": "Angiven e-postadress och lösenord matchar inget existerande konto.",
     "E-mail address": "E-postadress",
     "Password": "Lösenord",
+    "Password (confirm)": "Lösenord (bekräfta)",
     "Log in": "Logga in",
     "jane@example.com": "anna@example.se",
     "Language": "Språk",
@@ -12,5 +13,9 @@
     "Log out": "Logga ut",
     "You are now logged out": "Du är nu utloggad",
     "The account is locked. Please try again in one minute.": "Kontot är låst. Vänligen försök igen om en minut.",
-    "toomanyloginattempts": "Kontot har låsts till följd av att för många inloggningsförsök gjorts. Vänligen försök igen om en minut."
+    "toomanyloginattempts": "Kontot har låsts till följd av att för många inloggningsförsök gjorts. Vänligen försök igen om en minut.",
+    "Create account": "Skapa konto",
+    "Register": "Registrera",
+    "An account for that e-mail already exists.": "Det finns redan ett konto för den e-mailadressen.",
+    "Jane Doe": "Anna Svensson"
 }

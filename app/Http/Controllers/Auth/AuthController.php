@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\LoginFormRequest;
+use App\Http\Requests\RegisterFormRequest;
 
 use App\Models\User;
 
@@ -79,5 +80,46 @@ class AuthController extends Controller
 
         return redirect(route('guest.showLogin'))
             ->with(['logout_success' => __("You are now logged out")]);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistration(Request $request)
+    {
+        return view('register.register_form');
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function processRegistration(RegisterFormRequest $request)
+    {
+        $userInfo = $request->only(['name', 'email', 'password']);
+        $previousUser = $this->user->getUserByEmail($credentials['email']);
+
+        if ($previousUser) {
+            return back()->withErrors([
+                'registration_error' => __("An account for that e-mail already exists."),
+            ]);
+        }
+
+        User::create([
+            'name' => $userInfo['name'],
+            'email' => $userInfo['email'],
+            'password' => bcrypt($userInfo['password']),
+        ]);
+        
+        Auth::attempt([
+            'email' => $userInfo['email'],
+            'password' => $userInfo['password']
+        ]);
+
+        $request->session()->regenerate();
+
+        return redirect(route('user.home'))
+                ->with(['login_success' => __("You are now logged in")]);
     }
 }

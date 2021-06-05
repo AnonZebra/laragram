@@ -38,16 +38,17 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
+
+    li {
+        display: inline-block;
+        padding: 0;
+        font-weight: bold;
+    }
+
+    li:not(:first-child) {
+        margin-left: 1em;
+    }
 }
-
-nav ul li {
-    display: inline-block;
-    margin-left: 1em;
-    padding: 0;
-    font-weight: bold;
-}
-
-
 
 .language-picker {
     position: absolute;
@@ -58,24 +59,16 @@ nav ul li {
     border-radius: 0.4rem;
     text-align: center;
     margin-left: 0;
-    padding: 0.2rem 2rem;
-    width: 10rem;
+    padding: 0.2rem 0.2rem;
+    width: 4rem;
 }
 
 .language-picker > li:first-child {
     display: block;
 }
 
-.language-picker > li:not(:first-child) {
-    display: none;
-}
-
-.language-picker-wrapper:hover > .language-picker {
+.language-picker-wrapper > .language-picker.activated {
     border-color: $base-text-color;
-}
-
-.language-picker-wrapper:hover > .language-picker > li {
-    display: block;
 }
 
 .language-picker > li > a,

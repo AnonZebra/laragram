@@ -3,6 +3,7 @@
     "E-mail address": "メールアドレス",
     "Password": "パスワード",
     "Log in": "ログイン",
+    "Password (confirm)": "パスワード（確認用）",
     "jane@example.com": "hana@example.jp",
     "Language": "言語",
     "You are now logged in": "ログインが成功しました",
@@ -12,5 +13,9 @@
     "Log out": "ログアウト",
     "You are now logged out": "ログアウトしました",
     "The account is locked. Please try again in one minute.": "アカウントがロックされています。１分後またログインしてみて下さい。",
-    "toomanyloginattempts": "数回ログインしようとされた事が原因で、アカウントがロックされました。１分後またログインしてみて下さい。"
+    "toomanyloginattempts": "数回ログインしようとされた事が原因で、アカウントがロックされました。１分後またログインしてみて下さい。",
+    "Create account": "アカウント登録",
+    "Register": "登録",
+    "An account for that e-mail already exists.": "メールアドレスと一致するアカウントが既存しています",
+    "Jane Doe": "田中はな"
 }
