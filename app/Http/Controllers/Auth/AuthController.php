@@ -98,7 +98,7 @@ class AuthController extends Controller
     public function processRegistration(RegisterFormRequest $request)
     {
         $userInfo = $request->only(['name', 'email', 'password']);
-        $previousUser = $this->user->getUserByEmail($credentials['email']);
+        $previousUser = $this->user->getUserByEmail($userInfo['email']);
 
         if ($previousUser) {
             return back()->withErrors([
