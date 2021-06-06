@@ -40,7 +40,7 @@ class AuthTest extends TestCase
      * Visiting root URL as logged in user
      * returns home view.
      */
-    public function testAuthRedirect()
+    public function testAuthHome()
     {
         $user = User::factory()->create();
 
@@ -157,5 +157,46 @@ class AuthTest extends TestCase
         $this->assertTrue($dbUser->locked_flag);
         
         $this->assertEquals($dbUser->error_count, 6);
+    }
+
+    /**
+     * POSTing to registration route with valid credentials 
+     * creates a new user.
+     */
+    public function testRegister()
+    {
+        $userInfo = $this->userInfo;
+
+        $user = User::create([
+            'name' => $userInfo['name'],
+            'email' => $userInfo['email'],
+            'password' => bcrypt($userInfo['password']),
+        ]);
+
+        $response = $this
+            ->post(route('guest.processLogin'), [
+                'email' => $userInfo['email'],
+                'password' => $userInfo['password']
+            ]);
+
+        $this->assertAuthenticated();
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect(route('user.home'));
+    }
+
+    /**
+     * Visiting registration URL as guest
+     * returns form view.
+     */
+    public function testUnauthShowRegister()
+    {
+        $response = $this
+            ->get(route('guest.showRegistration'));
+
+        $response
+            ->assertStatus(200)
+            ->assertViewIs('register.register_form');
     }
 }
