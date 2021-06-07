@@ -73,14 +73,39 @@ class UserProfileTest extends TestCase
 
         $updatedDesc = UserProfile::where('user_id', $user->id)->first()->description;
 
-
+        //description updated
         $this->assertEquals($updatedDesc, $description);
         // redirected
         $response->assertStatus(302);
-
+        // image saved
         Storage::disk('public')
             ->assertExists(
                 'images/foo_example_com/' . $file->name
             );
     }
+
+    /**
+     * A user is able to update their own profile by POSTing
+     * to the corresponding route with just description, 
+     * whereupon the user is redirected
+     * and the description is updated in the database.
+     */
+    public function testUpdateProfileOnlyDescription()
+    {
+        $user = $this->randomUser;
+        $description = "It's-a me, Mario!";
+
+        $this->actingAs($user);
+        $response = $this->post(route('user.processUpdateProfile'), [
+            'description' => $description
+        ]);
+
+        $updatedDesc = UserProfile::where('user_id', $user->id)->first()->description;
+
+        //description updated
+        $this->assertEquals($updatedDesc, $description);
+        // redirected
+        $response->assertStatus(302);
+    }
+
 }

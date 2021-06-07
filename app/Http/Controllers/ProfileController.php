@@ -35,7 +35,7 @@ class ProfileController extends Controller
                 $request->description
             );
         } else {
-            $request->user->profile->updateDescription($request->description);
+            $request->user()->profile->updateDescription($request->description);
         }
         
         // \Log::info($profileUpdates);
