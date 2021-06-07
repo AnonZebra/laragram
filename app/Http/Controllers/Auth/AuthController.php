@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\LoginFormRequest;
-use App\Http\Requests\RegisterFormRequest;
+use App\Http\Requests\RegisterFormRequest; 
 
 use App\Models\User;
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $user->resetErrorCount();
 
-            return redirect(route('user.home'))
+            return redirect(route('user.profile'))
                 ->with(['login_success' => __("You are now logged in")]);
         }
 
@@ -119,7 +119,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(route('user.home'))
+        return redirect(route('user.profile'))
                 ->with(['login_success' => __("You are now logged in")]);
     }
 }

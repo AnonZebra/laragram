@@ -10,7 +10,7 @@
             </li>
         @else
             <li>
-                <a href="{{ route('user.home') }}">{{ __("Home") }}</a>
+                <a href="{{ route('user.profile') }}">{{ __("Home") }}</a>
             </li>
         @endif
         </ul>

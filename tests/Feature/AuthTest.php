@@ -8,7 +8,9 @@ use Tests\TestCase;
 
 use App\Models\User;
 
-
+/**
+ * Various tests closely related to user login/logout and registration.
+ */
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
@@ -50,7 +52,7 @@ class AuthTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertViewIs('home');
+            ->assertViewIs('profile');
     }
 
     /**
@@ -101,7 +103,7 @@ class AuthTest extends TestCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('user.home'));
+            ->assertRedirect(route('user.profile'));
     }
 
     /**
@@ -183,7 +185,7 @@ class AuthTest extends TestCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('user.home'));
+            ->assertRedirect(route('user.profile'));
     }
 
     /**
