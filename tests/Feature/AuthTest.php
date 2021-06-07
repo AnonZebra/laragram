@@ -8,7 +8,9 @@ use Tests\TestCase;
 
 use App\Models\User;
 
-
+/**
+ * Various tests closely related to user login/logout and registration.
+ */
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
