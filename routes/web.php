@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Requests\LoginFormRequest;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Locale\LocaleController;
+use App\Http\Controllers\ProfileController;
 
 Route::middleware(['guest'])->name('guest.')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -21,9 +21,11 @@ Route::middleware(['guest'])->name('guest.')->group(function () {
 });
 
 Route::middleware(['auth'])->name('user.')->group(function () {
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/', [ProfileController::class, 'showProfile'])
+        ->name('profile');
+
+    Route::post('/foo', [ProfileController::class, 'processUpdateProfile'])
+        ->name('processUpdateProfile');
 
     Route::post('/logout', [AuthController::class, 'processLogout'])
         ->name('processLogout');

@@ -50,7 +50,7 @@ class AuthTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertViewIs('home');
+            ->assertViewIs('profile');
     }
 
     /**
@@ -101,7 +101,7 @@ class AuthTest extends TestCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('user.home'));
+            ->assertRedirect(route('user.profile'));
     }
 
     /**
@@ -183,7 +183,7 @@ class AuthTest extends TestCase
 
         $response
             ->assertStatus(302)
-            ->assertRedirect(route('user.home'));
+            ->assertRedirect(route('user.profile'));
     }
 
     /**

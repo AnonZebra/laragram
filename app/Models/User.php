@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\UserProfile;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -24,6 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -79,7 +82,7 @@ class User extends Authenticatable
      * Returns the user with an email matching the passed one if it exists,
      * otherwise returns null.
      * 
-     * @param string email
+     * @param string $email
      * @return User
      */
     public static function getUserByEmail($email): ?User 
@@ -118,5 +121,13 @@ class User extends Authenticatable
     {
         $this->error_count = 0;
         $this->save();
+    }
+
+    /**
+     * Get the user's associated profile.
+     */
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
     }
 }
