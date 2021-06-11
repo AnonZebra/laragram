@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}">
         <link rel="shortcut icon" href="{{ url('favicon.ico') }}">
         <title>Laragram: @yield('title')</title>
-        <script src="js/app.js" defer></script>
+        <script src="{{ url('/js/app.js') }}" defer></script>
         @yield('script-tags')
 
     </head>
