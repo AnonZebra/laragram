@@ -22,5 +22,8 @@
     "Image": "画像",
     "Update": "更新",
     "ownparticle": "の",
-    "images": "画像"
+    "images": "画像",
+    "Submit image": "画像のアップロード",
+    "submitbtn": "アップロード",
+    "imgdesc": "説明"
 }

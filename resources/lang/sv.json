@@ -22,5 +22,8 @@
     "Image": "Bild",
     "Update": "Uppdatera",
     "ownparticle": "s",
-    "images": "bilder"
+    "images": "bilder",
+    "Submit image": "Ladda upp bild",
+    "submitbtn": "Skicka",
+    "imgdesc": "Beskrivning"
 }

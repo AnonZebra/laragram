@@ -25,11 +25,6 @@
     <button type="submit" class="button primary-button column-span-2">{{ __("Update") }}</button>
 </form>
 
-<form>
-        
-        
-</form>
-
 <form class="single-button-form" method="POST" action="{{ route('user.processLogout') }}">
     @csrf
     <button type="submit" class="button secondary-button">{{ __("Log out") }}</button>

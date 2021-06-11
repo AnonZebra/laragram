@@ -22,5 +22,8 @@
     "Image": "Image",
     "Update": "Update",
     "ownparticle": "'s",
-    "images": "images"
+    "images": "images",
+    "Submit image": "Submit image",
+    "submitbtn": "Submit",
+    "imgdesc": "Description"
 }

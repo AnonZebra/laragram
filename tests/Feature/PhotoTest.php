@@ -38,42 +38,42 @@ class PhotoTest extends TestCase
             ->assertStatus(200);
     }
 
-    // /**
-    //  * Logged-in user can submit photo form, upon which
-    //  * a photo post record is created and the sent image
-    //  * is saved.
-    //  */
-    // public function testSendPhotoForm()
-    // {
-    //     $userInfo = $this->userInfo;
-    //     $user = User::create([
-    //         'name' => $userInfo['name'],
-    //         'email' => 'foo@example.com',
-    //         'password' => bcrypt($userInfo['password']),
-    //     ]);
-    //     Storage::fake('profiles');
-    //     $fName = 'temp.jpg';
-    //     $file = UploadedFile::fake()->image($fName);
-    //     $description = "Such a cool seamstress!";
+    /**
+     * Logged-in user can submit photo form, upon which
+     * a photo post record is created and the sent image
+     * is saved.
+     */
+    public function testSendPhotoForm()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::create([
+            'name' => $userInfo['name'],
+            'email' => 'foo@example.com',
+            'password' => bcrypt($userInfo['password']),
+        ]);
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
 
-    //     $this->actingAs($user);
-    //     $response = $this->post(route('user.processPhotoForm'), [
-    //         'image' => $file,
-    //         'description' => $description
-    //     ]);
+        $this->actingAs($user);
+        $response = $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
 
-    //     $dbDesc = PhotoPost::where('user_id', $user->id)->first()->description;
+        $dbDesc = PhotoPost::where('user_id', $user->id)->first()->description;
 
-    //     //description updated
-    //     $this->assertEquals($dbDesc, $description);
-    //     // redirected
-    //     $response->assertStatus(302);
-    //     // image saved
-    //     Storage::disk('public')
-    //         ->assertExists(
-    //             'images/foo_example_com/' . $file->name
-    //         );
-    // }
+        //description updated
+        $this->assertEquals($dbDesc, $description);
+        // redirected
+        $response->assertStatus(302);
+        // image saved
+        Storage::disk('public')
+            ->assertExists(
+                'images/foo_example_com/' . $file->name
+            );
+    }
 
     // /**
     //  * Guest user can view user's list of photos.
