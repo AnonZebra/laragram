@@ -16,6 +16,7 @@
     "toomanyloginattempts": "The account has been locked due to too many login attempts having been made. Please try again in 1 minute.",
     "Create account": "Create account",
     "Register": "Register",
+    "Registration": "Registration",
     "An account for that e-mail already exists.": "An account for that e-mail already exists.",
     "Jane Doe": "Jane Doe",
     "Self-introduction": "Self-introduction",

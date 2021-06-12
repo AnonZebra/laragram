@@ -4,7 +4,7 @@
             <a href="{{ route('guest.showLogin') }}">{{ __("Log in") }}</a>
         </li>
         <li>
-            <a href="{{ route('guest.showRegistration') }}">{{ __("Register") }}</a>
+            <a href="{{ route('guest.showRegistration') }}">{{ __("Registration") }}</a>
         </li>
     @else
         <li>

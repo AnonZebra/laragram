@@ -19,5 +19,5 @@
     <input id="password" name="password" type="password" minlength=6 required>
     <button type="submit" class="button primary-button column-span-2">{{ __("Log in") }}</button>
 </form>
-<a class="button secondary-button" href="{{ route('guest.showRegistration') }}">{{ __("Register") }}</a>
+<a class="button secondary-button" href="{{ route('guest.showRegistration') }}">{{ __("Registration") }}</a>
 @endsection
