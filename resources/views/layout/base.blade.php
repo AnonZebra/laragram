@@ -13,7 +13,7 @@
     <body>
         @include('layout.header')
 
-        <main>
+        <main class="@yield('main-class')">
             @if ($errors->any())
                 <div class="message warning-message">
                     <ul>

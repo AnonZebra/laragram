@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Pacifico&family=Meddon&family=New+Tegomin&family=Rubik&display=swap);
 /*
 Styling, including FontAwesome styling/icons,
 for 'MyMap' app.
@@ -343,6 +343,7 @@ Sass variables for mymap app.
 modular scale used: 1.2
 https://www.modularscale.com/?1&rem&1.2
 */
+/* navigation */
 /* buttons */
 /* forms */
 /* media tags */
@@ -367,6 +368,7 @@ main {
   flex-flow: column nowrap;
   padding: 0 0rem;
   align-items: center;
+  margin-top: 60px;
 }
 
 h1 {
@@ -387,7 +389,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Pacifico", cursive;
+  font-family: "Pacifico", "New Tegomin", cursive;
 }
 
 p {
@@ -412,23 +414,30 @@ a {
 
 /* Header */
 .site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   display: grid;
-  grid-template-columns: 8fr 1fr;
+  grid-template-columns: 3fr 16fr 2fr;
   background-color: #42c5d4;
   color: #fdfdfd;
   padding: 0 2em;
   align-items: center;
-  min-height: 60px;
+  height: 60px;
   justify-content: space-between;
   align-items: center;
   grid-area: header;
+  z-index: 3;
+  border-bottom: solid 0.1rem #fdfdfd;
 }
 
 .site-header a,
 .site-header a:visited {
   color: #fdfdfd;
-  font-family: Montserrat, Helvetica, sans-serif;
+  font-family: "Pacifico", "New Tegomin", cursive;
+  font-size: 1.2rem;
+  font-weight: normal;
   text-decoration: none;
 }
 
@@ -439,23 +448,98 @@ a {
   color: #333;
 }
 
+#site-logo {
+  font-family: "Meddon", cursive;
+  font-size: 1.44rem;
+  text-decoration: none;
+  color: #fdfdfd;
+}
+
 nav {
   padding: 0.3em 0;
   text-align: left;
 }
 
-nav ul {
+nav ul.nav-link-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-nav ul li {
+nav ul.nav-link-list li {
   display: inline-block;
   padding: 0;
   font-weight: bold;
 }
-nav ul li:not(:first-child) {
-  margin-left: 1em;
+nav ul.nav-link-list li:not(:first-child) {
+  margin-left: 2em;
+}
+
+.mobile-nav {
+  display: none;
+  justify-content: flex-start;
+  flex-flow: column nowrap;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 50vw;
+  left: 50vw;
+  opacity: 0;
+  z-index: 2;
+  background-color: #42c5d4;
+  color: #fdfdfd;
+  padding-top: 60px;
+}
+.mobile-nav ul.nav-link-list {
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+.mobile-nav ul.nav-link-list li {
+  margin-bottom: 1rem;
+}
+.mobile-nav ul.nav-link-list li:first-child {
+  margin-left: 0;
+  display: none;
+}
+.mobile-nav ul.nav-link-list li:not(first-child) {
+  margin-left: 0;
+  display: none;
+}
+.mobile-nav a {
+  color: #fdfdfd;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 1.44rem;
+}
+
+.mobile-nav.active {
+  display: flex;
+  opacity: 1;
+}
+.mobile-nav.active ul.nav-link-list li:not(first-child) {
+  margin-left: 0;
+  display: block;
+}
+
+.mobile-nav-shadow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  opacity: 0;
+  display: none;
+  z-index: 1;
+}
+
+.mobile-nav-shadow.active {
+  opacity: 0.88;
+  display: block;
+}
+
+.desktop-nav {
+  display: none;
 }
 
 .language-picker {
@@ -468,15 +552,45 @@ nav ul li:not(:first-child) {
   text-align: center;
   margin-left: 0;
   padding: 0.2rem 0.2rem;
-  width: 4rem;
+  width: 5rem;
 }
 
 .language-picker > li:first-child {
   display: block;
 }
 
-.language-picker-wrapper > .language-picker.activated {
+.mobile-language-picker {
+  justify-self: center;
+  align-self: center;
+  background-color: #42c5d4;
+  border-style: solid;
+  border-color: #fdfdfd;
+  border-radius: 0.4rem;
+  max-width: 12rem;
+  margin: 0 2rem;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-items: center;
+  list-style: none;
+  padding: 0;
+}
+.mobile-language-picker li {
+  padding: 0.2rem 2rem;
+  font-weight: normal;
+  text-align: center;
+  margin-left: 0;
+}
+.mobile-language-picker li a {
+  font-size: 1rem;
+}
+
+.mobile-lanugage-picker .language-picker-wrapper > .language-picker.activated {
   border-color: #333;
+}
+
+.desktop-language-picker-wrapper {
+  display: none;
 }
 
 .language-picker > li > a,
@@ -488,6 +602,34 @@ nav ul li:not(:first-child) {
   color: #333;
 }
 
+.menu-toggle {
+  justify-self: end;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.menu-toggle img {
+  height: 1.44rem;
+  width: auto;
+  vertical-align: bottom;
+}
+
+@media only screen and (min-width: 800px) {
+  .desktop-nav {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .desktop-language-picker-wrapper {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
 .message {
   border-radius: 2rem;
   padding: 0.2rem 2rem;
@@ -811,4 +953,26 @@ button,
   border-radius: 50%;
   height: 150px;
   width: 150px;
+}
+
+.photo-list {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 0;
+}
+
+.photo-list-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.photo-list-figure {
+  max-width: 80vw;
+  margin: 0;
+  border: solid 0.1rem #333;
+  padding: 1rem;
+  border-radius: 1rem;
 }
