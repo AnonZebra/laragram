@@ -1,0 +1,21 @@
+.photo-list {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: 0;
+}
+
+.photo-list-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.photo-list-figure {
+    max-width: 80vw;
+    margin: 0;
+    border: solid 0.1rem $base-text-color;
+    padding: 1rem;
+    border-radius: 1rem;
+}

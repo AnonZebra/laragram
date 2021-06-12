@@ -23,7 +23,9 @@
     "Update": "更新",
     "ownparticle": "の",
     "images": "画像",
-    "Submit image": "画像のアップロード",
-    "submitbtn": "アップロード",
-    "imgdesc": "説明"
+    "Submit image": "画像投稿",
+    "submitbtn": "投稿",
+    "imgdesc": "説明",
+    "usernoimages": "ユーザーはまだ画像をアップロードしていません。",
+    "Image upload": "画像投稿"
 }

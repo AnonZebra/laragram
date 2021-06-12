@@ -9,6 +9,8 @@ use Illuminate\View\View;
 use App\Http\Requests\PhotoFormRequest;
 use App\Models\PhotoPost;
 
+use App\Models\User;
+
 class PhotoController extends Controller
 {
     /**
@@ -44,14 +46,17 @@ class PhotoController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
+     * @param $id
      * @return \Illuminate\View\View
      */
-    public function showPhotoList(Request $request): View
+    public function showPhotoList(Request $request, $id): View
     {
-        $user = $request->user();
+        \Log::info('showing photo list...');
+        $user = User::getUserById($id);
         $userPhotoPosts = $user->photoPosts;
+        \Log::info($userPhotoPosts);
         return view('photo.photo_list', [
-            'userName' => $user->name,
+            'username' => $user->name,
             'photoPosts' => $userPhotoPosts
         ]);
     }

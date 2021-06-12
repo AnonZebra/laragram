@@ -39,3 +39,6 @@ Route::middleware(['auth'])->name('user.')->group(function () {
 });
 
 Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])->name('updateLocale');
+
+Route::get('/user/{id}/photos', [PhotoController::class, 'showPhotoList'])
+    ->name('showOwnPhotoList');

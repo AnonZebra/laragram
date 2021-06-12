@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\UserProfile;
+use App\Models\PhotoPost;
 
 class User extends Authenticatable
 {
@@ -129,5 +130,25 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(UserProfile::class);
+    }
+
+    /**
+     * Get the user's associated photo posts.
+     */
+    public function photoPosts()
+    {
+        return $this->hasMany(PhotoPost::class);
+    }
+
+    /**
+     * Returns the user with an ID matching the passed one if it exists,
+     * otherwise returns null.
+     * 
+     * @param string $id
+     * @return User
+     */
+    public static function getUserById($id): ?User 
+    {
+        return self::where('id', $id)->first();
     }
 }

@@ -21,9 +21,11 @@
     "Self-introduction": "Self-introduction",
     "Image": "Image",
     "Update": "Update",
-    "ownparticle": "'s",
+    "ownparticle": "'s ",
     "images": "images",
     "Submit image": "Submit image",
     "submitbtn": "Submit",
-    "imgdesc": "Description"
+    "imgdesc": "Description",
+    "usernoimages": "The user hasn't uploaded any images yet.",
+    "Image upload": "Image upload"
 }

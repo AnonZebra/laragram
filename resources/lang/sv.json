@@ -21,9 +21,11 @@
     "Self-introduction": "Självintroduktion",
     "Image": "Bild",
     "Update": "Uppdatera",
-    "ownparticle": "s",
+    "ownparticle": "s ",
     "images": "bilder",
     "Submit image": "Ladda upp bild",
     "submitbtn": "Skicka",
-    "imgdesc": "Beskrivning"
+    "imgdesc": "Beskrivning",
+    "usernoimages": "Användaren har inte laddat upp några bilder än.",
+    "Image upload": "Bilduppladdning"
 }
