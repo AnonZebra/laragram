@@ -16,7 +16,7 @@ photo-main
     <li>
         <figure class="photo-list-figure">
             <img src="{{ URL::to('/') }}{{ Storage::url($photoPost->image) }}" class="photo-list-image">
-            <figcaption>{{ $photoPost->description }}</figcaption>
+            <figcaption class="photo-list-caption">{{ $photoPost->description }}</figcaption>
         </figure>
     </li>
 @endforeach

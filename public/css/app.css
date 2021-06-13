@@ -958,23 +958,32 @@ button,
 .photo-list {
   list-style: none;
   text-align: center;
-  display: flex;
-  flex-flow: column nowrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
   margin-left: 0;
+}
+.photo-list li {
+  margin: 0 1rem 2rem;
 }
 
 .photo-list-image {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: 1rem;
 }
 
 .photo-list-figure {
-  max-width: 80vw;
+  max-width: 90vw;
   margin: 0;
   border: solid 0.1rem #333;
   padding: 1rem;
   border-radius: 1rem;
+}
+
+.photo-list-caption {
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .photo-user-list {
@@ -1024,10 +1033,18 @@ button,
 }
 
 @media only screen and (min-width: 800px) {
+  .photo-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   .photo-user-list {
     width: 95%;
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .photo-list-figure {
+    max-width: 30vw;
   }
 }
