@@ -118,8 +118,6 @@ class PhotoTest extends TestCase
     {
         $userInfo = $this->userInfo;
         $genUsers = User::factory()->count(2)->create();
-        $user1 = User::factory()->create();
-        $user2 = User::factory()->create();
         Storage::fake('profiles');
         $fName = 'temp.jpg';
         $file = UploadedFile::fake()->image($fName);
@@ -141,5 +139,37 @@ class PhotoTest extends TestCase
             ->assertStatus(200);
         
         $this->assertEquals($response['users'][0]->name, $allUsers[0]->name);
+    }
+
+    /**
+     * Guest user can get detail view of a user's single image.
+     */
+    public function testViewSinglePhoto()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::factory()->create();
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
+        Auth::logout();
+
+        $pP = PhotoPost::all()->first();
+
+        $response = $this->get(
+            route('showPhotoDetail', [
+                'userId' => $user->id,
+                'photoId' => $pP->id
+            ])
+        );
+
+        $response
+            ->assertStatus(200)
+            ->assertViewHas('postOwnerName', $user->name);
     }
 }

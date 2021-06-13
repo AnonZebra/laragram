@@ -55,6 +55,7 @@ class PhotoController extends Controller
         $user = User::getUserById($id);
         $userPhotoPosts = $user->photoPosts;
         return view('photo.photo_list', [
+            'userId' => $user->id,
             'username' => $user->name,
             'photoPosts' => $userPhotoPosts
         ]);
@@ -70,6 +71,24 @@ class PhotoController extends Controller
 
         return view('photo.user_link_list', [
             'users' => $users
+        ]);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param $userId
+     * @param $photoId
+     * @return \Illuminate\View\View
+     */
+    public function showPhotoDetail(Request $request, $userId, $photoId): View
+    {
+        $user = User::getUserById($userId);
+        $post = $user->photoPosts->where('id', $photoId)->first();
+        return view('photo.photo_detail', [
+            'postOwnerPortrait' => $user->profile->image,
+            'postOwnerId' => $user->id,
+            'postOwnerName' => $user->name,
+            'post' => $post
         ]);
     }
 }

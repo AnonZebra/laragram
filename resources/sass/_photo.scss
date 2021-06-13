@@ -1,10 +1,17 @@
+.photo-main {
+    p {
+        text-align: center;
+    }
+}
+
 .photo-list {
     list-style: none;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
-    margin-left: 0;
+    margin: 0 2rem;
+    padding-left: 0;
 
     li {
         margin: 0 1rem 2rem;
@@ -12,16 +19,15 @@
 }
 
 .photo-list-image {
-    width: 100%;
-    height: auto;
+    max-width: 85vw;
+    max-height: 50vh;
     border-radius: 1rem;
 }
 
 .photo-list-figure {
-    max-width: 90vw;
     margin: 0;
     border: solid 0.1rem $base-text-color;
-    padding: 1rem;
+    padding: 1rem 2vw;
     border-radius: 1rem;
 }
 
@@ -75,9 +81,48 @@
     transition: all 0.5s;
 }
 
+.photo-detail-figure {
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.photo-detail-image {
+    width: 100vw;
+    height: auto;
+    // border-radius: 1rem;
+}
+
+.photo-detail-caption {
+    text-align: center;
+    border-bottom: solid $base-text-color 0.1rem;
+}
+
+.photo-detail-owner {
+    text-align: left;
+    margin-top: 0.2rem;
+    margin-left: 1rem;
+    color: $base-text-color;
+}
+
+.photo-user-detail-portrait {
+    width: 2rem;
+    height: 2rem;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: $black;
+    display: inline;
+    vertical-align: bottom;
+}
+
 @media only screen and (min-width: $media-width-max-small-screen) {
     .photo-list {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .photo-list-image {
+        max-width: 25vw;
+        max-height: 40vh;
     }
     
     .photo-user-list {
@@ -86,8 +131,4 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     } 
-
-    .photo-list-figure {
-        max-width: 30vw;
-    }
 }

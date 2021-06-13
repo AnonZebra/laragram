@@ -43,5 +43,8 @@ Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])-
 Route::get('/user/{id}/photos', [PhotoController::class, 'showPhotoList'])
     ->name('showPhotoList');
 
+Route::get('/user/{userId}/photos/{photoId}', [PhotoController::class, 'showPhotoDetail'])
+    ->name('showPhotoDetail');
+
 Route::get('/', [PhotoController::class, 'showUserList'])
     ->name('newUsers');

@@ -985,29 +985,39 @@ button,
   width: 150px;
 }
 
+.profile-image-small {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.photo-main p {
+  text-align: center;
+}
+
 .photo-list {
   list-style: none;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  margin-left: 0;
+  margin: 0 2rem;
+  padding-left: 0;
 }
 .photo-list li {
   margin: 0 1rem 2rem;
 }
 
 .photo-list-image {
-  width: 100%;
-  height: auto;
+  max-width: 85vw;
+  max-height: 50vh;
   border-radius: 1rem;
 }
 
 .photo-list-figure {
-  max-width: 90vw;
   margin: 0;
   border: solid 0.1rem #333;
-  padding: 1rem;
+  padding: 1rem 2vw;
   border-radius: 1rem;
 }
 
@@ -1062,9 +1072,47 @@ button,
   transition: all 0.5s;
 }
 
+.photo-detail-figure {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.photo-detail-image {
+  width: 100vw;
+  height: auto;
+}
+
+.photo-detail-caption {
+  text-align: center;
+  border-bottom: solid #333 0.1rem;
+}
+
+.photo-detail-owner {
+  text-align: left;
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+  color: #333;
+}
+
+.photo-user-detail-portrait {
+  width: 2rem;
+  height: 2rem;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: #333;
+  display: inline;
+  vertical-align: bottom;
+}
+
 @media only screen and (min-width: 800px) {
   .photo-list {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .photo-list-image {
+    max-width: 25vw;
+    max-height: 40vh;
   }
 
   .photo-user-list {
@@ -1072,9 +1120,5 @@ button,
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  .photo-list-figure {
-    max-width: 30vw;
   }
 }
