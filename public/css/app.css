@@ -412,6 +412,13 @@ a {
   display: block;
 }
 
+/* General */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
 /* Header */
 .site-header {
   position: absolute;
@@ -611,6 +618,28 @@ nav ul.nav-link-list li:not(:first-child) {
   height: 1.44rem;
   width: auto;
   vertical-align: bottom;
+}
+
+/* Main */
+main {
+  flex: 1 1 auto;
+}
+
+/* Footer */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #42c5d4;
+  height: 60px;
+  flex: 0 1 60px;
+}
+
+#site-logo-small {
+  font-family: "Meddon", cursive;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #fdfdfd;
 }
 
 @media only screen and (min-width: 800px) {
@@ -900,6 +929,7 @@ button {
   background-color: inherit;
   border-color: #42c5d4;
   transition: 0.2s;
+  margin-bottom: 0.2rem;
 }
 
 .secondary-button:hover {

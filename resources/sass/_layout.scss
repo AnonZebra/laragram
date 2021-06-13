@@ -1,3 +1,10 @@
+/* General */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+}
+
 /* Header */
 $header-font-size: $base-font-size * $modular-factor;
 
@@ -215,6 +222,29 @@ nav ul.nav-link-list {
         width: auto;
         vertical-align: bottom;
     }
+}
+
+/* Main */
+main {
+    flex: 1 1 auto;
+}
+
+
+/* Footer */
+.site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-middle;
+    height: $footer-height-large-screen;
+    flex: 0 1 $footer-height-large-screen;
+}
+
+#site-logo-small {
+    font-family: $title-font-family;
+    font-size: $base-font-size * pow($modular-factor, 1);
+    text-decoration: none;
+    color: $inverted-text-color;
 }
 
 @media only screen and (min-width: $media-width-max-small-screen) {
