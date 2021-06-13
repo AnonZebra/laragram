@@ -15,7 +15,9 @@ photo-main
 @foreach ($photoPosts as $photoPost)
     <li>
         <figure class="photo-list-figure">
-            <img src="{{ URL::to('/') }}{{ Storage::url($photoPost->image) }}" class="photo-list-image">
+            <a href="{{ route('showPhotoDetail', ['photoOwnerId' => $photoOwnerId, 'photoId' => $photoPost->id]) }}">
+                <img src="{{ URL::to('/') }}{{ Storage::url($photoPost->image) }}" class="photo-list-image" alt="{{ $photoPost->description }}">
+            </a>
             <figcaption class="photo-list-caption">{{ $photoPost->description }}</figcaption>
         </figure>
     </li>

@@ -84,7 +84,7 @@ nav ul.nav-link-list {
     z-index: 2;
     background-color: $primary-middle;
     color: $inverted-text-color;
-    padding-top: $navigation-height-small-screen;
+    padding-top: $navigation-height-small-screen + 20px;
 
     ul.nav-link-list {
         display: flex;
@@ -190,11 +190,10 @@ nav ul.nav-link-list {
 
         a {
             font-size: $base-font-size;
+            font-family: $heading-font-family;
         }
     }
 }
-
-.mobile-lanugage-picker
 
 .language-picker-wrapper > .language-picker.activated {
     border-color: $base-text-color;

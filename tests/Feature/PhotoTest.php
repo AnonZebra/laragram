@@ -11,6 +11,7 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\PhotoPost;
+use App\Models\PhotoComment;
 
 class PhotoTest extends TestCase
 {
@@ -118,8 +119,6 @@ class PhotoTest extends TestCase
     {
         $userInfo = $this->userInfo;
         $genUsers = User::factory()->count(2)->create();
-        $user1 = User::factory()->create();
-        $user2 = User::factory()->create();
         Storage::fake('profiles');
         $fName = 'temp.jpg';
         $file = UploadedFile::fake()->image($fName);
@@ -141,5 +140,94 @@ class PhotoTest extends TestCase
             ->assertStatus(200);
         
         $this->assertEquals($response['users'][0]->name, $allUsers[0]->name);
+    }
+
+    /**
+     * Guest user can get detail view of a user's single image.
+     */
+    public function testViewSinglePhoto()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::factory()->create();
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
+        Auth::logout();
+
+        $pP = PhotoPost::all()->first();
+
+        $response = $this->get(
+            route('showPhotoDetail', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id
+            ])
+        );
+
+        $response
+            ->assertStatus(200)
+            ->assertViewHas('postOwnerName', $user->name);
+    }
+
+    /**
+     * Registered user can comment on another user's image.
+     */
+    public function testCommentOnPhoto()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::factory()->create();
+        $commentUser = User::factory()->create();
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
+        Auth::logout();
+
+        $pP = PhotoPost::all()->first();
+
+        $this->actingAs($commentUser);
+
+        $getResponse = $this->get(
+            route('user.showPhotoCommentForm', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id
+            ])
+        );
+
+        $getResponse
+            ->assertStatus(200);
+        
+        $postResponse = $this->post(
+            route('user.showPhotoCommentForm', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id
+            ]),
+            ['comment' => 'foobar']
+        );
+
+        $postResponse
+            ->assertStatus(302)
+            ->assertRedirect(
+                route('showPhotoDetail', [
+                    'photoOwnerId' => $user->id,
+                    'photoId' => $pP->id
+                ])
+            );
+        
+        $comment = PhotoComment::all()->first();
+
+        $this->assertEquals($comment->id, 1);
+        $this->assertEquals($comment->user_id, $commentUser->id);
+        $this->assertEquals($comment->photo_post_id, $pP->id);
     }
 }

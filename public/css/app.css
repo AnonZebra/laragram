@@ -494,7 +494,7 @@ nav ul.nav-link-list li:not(:first-child) {
   z-index: 2;
   background-color: #42c5d4;
   color: #fdfdfd;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 .mobile-nav ul.nav-link-list {
   display: flex;
@@ -590,9 +590,10 @@ nav ul.nav-link-list li:not(:first-child) {
 }
 .mobile-language-picker li a {
   font-size: 1rem;
+  font-family: "Pacifico", "New Tegomin", cursive;
 }
 
-.mobile-lanugage-picker .language-picker-wrapper > .language-picker.activated {
+.language-picker-wrapper > .language-picker.activated {
   border-color: #333;
 }
 
@@ -985,29 +986,51 @@ button,
   width: 150px;
 }
 
+.profile-image-small {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.profile-image-mini {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+@media only screen and (min-width: 800px) {
+  .profile-image-small {
+    height: 75px;
+    width: 75px;
+  }
+}
+.photo-main p {
+  text-align: center;
+}
+
 .photo-list {
   list-style: none;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  margin-left: 0;
+  margin: 0 2rem;
+  padding-left: 0;
 }
 .photo-list li {
   margin: 0 1rem 2rem;
 }
 
 .photo-list-image {
-  width: 100%;
-  height: auto;
+  max-width: 85vw;
+  max-height: 50vh;
   border-radius: 1rem;
 }
 
 .photo-list-figure {
-  max-width: 90vw;
   margin: 0;
   border: solid 0.1rem #333;
-  padding: 1rem;
+  padding: 1rem 2vw;
   border-radius: 1rem;
 }
 
@@ -1062,9 +1085,108 @@ button,
   transition: all 0.5s;
 }
 
+.photo-detail-figure {
+  margin: 0;
+  border: none;
+  padding: 0;
+  border-bottom: solid #333 0.1rem;
+  margin-bottom: 2rem;
+}
+
+.photo-detail-image {
+  width: 100vw;
+  height: auto;
+}
+
+.photo-detail-caption {
+  text-align: left;
+  padding-bottom: 2rem;
+  margin: 0 1rem;
+}
+
+.photo-detail-owner {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+  color: #333;
+}
+
+.photo-detail-owner-name {
+  font-size: 1.2rem;
+}
+
+.photo-user-detail-portrait, .photo-commenter-detail-portrait {
+  border-style: solid;
+  border-width: 0.09rem;
+  border-color: #333;
+  display: inline;
+  vertical-align: bottom;
+  margin-right: 1rem;
+}
+
+.photo-comment-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  width: 60vw;
+}
+
+.photo-comment-li {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3rem auto;
+  border: solid #333 0.1rem;
+  border-radius: 0.4rem;
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+}
+
+.photo-detail-comment-body {
+  grid-column: 1/span 2;
+  grid-row: 2;
+}
+
+.photo-detail-commenter {
+  display: grid;
+  text-align: left;
+  grid-template-columns: 40px 120px auto;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.photo-detail-commenter-name {
+  grid-column: 2/span 1;
+  grid-row: 1/span 1;
+  font-size: 0.8333333333rem;
+  text-decoration: underline;
+}
+
+.photo-detail-comment-date {
+  grid-column: 2/span 1;
+  grid-row: 2/span 1;
+  font-size: 0.8333333333rem;
+  display: inline-block;
+}
+
+.photo-commenter-detail-portrait {
+  grid-column: 1/span 1;
+  grid-row: 1/span 2;
+}
+
 @media only screen and (min-width: 800px) {
   .photo-list {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .photo-list-image {
+    max-width: 25vw;
+    max-height: 40vh;
   }
 
   .photo-user-list {
@@ -1074,7 +1196,7 @@ button,
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  .photo-list-figure {
-    max-width: 30vw;
+  .photo-user-detail-portrait, .photo-commenter-detail-portrait {
+    border-width: 0.1rem;
   }
 }

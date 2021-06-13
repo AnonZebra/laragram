@@ -1,10 +1,17 @@
+.photo-main {
+    p {
+        text-align: center;
+    }
+}
+
 .photo-list {
     list-style: none;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
-    margin-left: 0;
+    margin: 0 2rem;
+    padding-left: 0;
 
     li {
         margin: 0 1rem 2rem;
@@ -12,16 +19,15 @@
 }
 
 .photo-list-image {
-    width: 100%;
-    height: auto;
+    max-width: 85vw;
+    max-height: 50vh;
     border-radius: 1rem;
 }
 
 .photo-list-figure {
-    max-width: 90vw;
     margin: 0;
     border: solid 0.1rem $base-text-color;
-    padding: 1rem;
+    padding: 1rem 2vw;
     border-radius: 1rem;
 }
 
@@ -75,9 +81,111 @@
     transition: all 0.5s;
 }
 
+.photo-detail-figure {
+    margin: 0;
+    border: none;
+    padding: 0;
+    border-bottom: solid $base-text-color 0.1rem;
+    margin-bottom: 2rem;
+}
+
+.photo-detail-image {
+    width: 100vw;
+    height: auto;
+    // border-radius: 1rem;
+}
+
+.photo-detail-caption {
+    text-align: left;
+    padding-bottom: 2rem;
+    margin: 0 1rem; 
+}
+
+.photo-detail-owner {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-top: 0.2rem;
+    margin-left: 1rem;
+    color: $base-text-color;
+}
+
+.photo-detail-owner-name {
+    font-size: $base-font-size * pow($modular-factor, 1);
+}
+
+.photo-user-detail-portrait {
+    border-style: solid;
+    border-width: 0.09rem;
+    border-color: $black;
+    display: inline;
+    vertical-align: bottom;
+    margin-right: 1rem;
+}
+
+.photo-comment-list {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    width: 60vw;
+}
+
+.photo-comment-li {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem auto;
+    border: solid $base-text-color 0.1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+.photo-detail-comment-body {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.photo-detail-commenter {
+    display: grid;
+    // align-items: center;
+    text-align: left;
+    grid-template-columns: 40px 120px auto;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    color: $base-text-color;
+    text-decoration: none;
+}
+
+.photo-detail-commenter-name {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    font-size: $base-font-size / $modular-factor;
+    text-decoration: underline;
+}
+
+.photo-detail-comment-date {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    font-size: $base-font-size / $modular-factor;
+    display: inline-block;
+}
+
+.photo-commenter-detail-portrait {
+    @extend .photo-user-detail-portrait;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+}
+
 @media only screen and (min-width: $media-width-max-small-screen) {
     .photo-list {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .photo-list-image {
+        max-width: 25vw;
+        max-height: 40vh;
     }
     
     .photo-user-list {
@@ -87,7 +195,8 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
     } 
 
-    .photo-list-figure {
-        max-width: 30vw;
+    .photo-user-detail-portrait {
+        border-width: 0.1rem;
     }
 }
+
