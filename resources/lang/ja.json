@@ -30,5 +30,6 @@
     "usernoimages": "ユーザーはまだ画像をアップロードしていません。",
     "Image upload": "画像投稿",
     "New users": "新たなユーザー",
-    "nousers": "まだ誰も登録されていません。"
+    "nousers": "まだ誰も登録されていません。",
+    "Upload was successful": "投稿が成功しました"
 }

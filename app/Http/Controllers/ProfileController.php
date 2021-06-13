@@ -23,7 +23,6 @@ class ProfileController extends Controller
      */
     public function processUpdateProfile(ProfileFormRequest $request)
     {
-        // $description = $request->description;
         if ($request['image']) {
             $userEmail = $request->user()->email;
             $userDirName = preg_replace("(@|\.)", "_", $userEmail);
@@ -37,11 +36,6 @@ class ProfileController extends Controller
         } else {
             $request->user()->profile->updateDescription($request->description);
         }
-        
-        // \Log::info($profileUpdates);
-        // $request->user()->profile->updateImageAndDescription(
-            
-        // );
 
         return redirect(route('user.profile'));
     }

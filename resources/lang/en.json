@@ -30,5 +30,6 @@
     "usernoimages": "The user hasn't uploaded any images yet.",
     "Image upload": "Image upload",
     "New users": "New users",
-    "nousers": "There aren't any users yet."
+    "nousers": "There aren't any users yet.",
+    "Upload was successful": "Upload was successful"
 }

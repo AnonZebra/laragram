@@ -41,7 +41,8 @@ class PhotoController extends Controller
             'image' => $storedImage,
             'description' => $request->description
         ]);
-        return redirect(route('user.showPhotoForm'));
+        return redirect(route('user.showPhotoForm'))
+            ->with(['upload_success' => __("Upload was successful")]);;
     }
 
     /**
