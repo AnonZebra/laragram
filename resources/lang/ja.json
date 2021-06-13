@@ -28,5 +28,7 @@
     "submitbtn": "投稿",
     "imgdesc": "説明",
     "usernoimages": "ユーザーはまだ画像をアップロードしていません。",
-    "Image upload": "画像投稿"
+    "Image upload": "画像投稿",
+    "New users": "新たなユーザー",
+    "nousers": "まだ誰も登録されていません。"
 }

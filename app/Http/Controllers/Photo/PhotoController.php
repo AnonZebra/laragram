@@ -51,13 +51,24 @@ class PhotoController extends Controller
      */
     public function showPhotoList(Request $request, $id): View
     {
-        \Log::info('showing photo list...');
         $user = User::getUserById($id);
         $userPhotoPosts = $user->photoPosts;
-        \Log::info($userPhotoPosts);
         return view('photo.photo_list', [
             'username' => $user->name,
             'photoPosts' => $userPhotoPosts
+        ]);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
+    public function showUserList(Request $request): View
+    {
+        $users = User::orderByDesc('created_at')->limit(12)->get();
+
+        return view('photo.user_link_list', [
+            'users' => $users
         ]);
     }
 }

@@ -1,4 +1,7 @@
 <ul class="nav-link-list">
+    <li>
+        <a href="{{ route('newUsers') }}">{{ __("New users") }}</a>
+    </li>
     @if (!Auth::user())
         <li>
             <a href="{{ route('guest.showLogin') }}">{{ __("Log in") }}</a>
@@ -8,7 +11,7 @@
         </li>
     @else
         <li>
-            <a href="{{ route('user.profile') }}">{{ __("Home") }}</a>
+            <a href="{{ route('user.profile') }}">{{ __("Profile") }}</a>
         </li>
         <li>
             <a href="{{ route('user.showPhotoForm') }}">{{ __("Image upload") }}</a>

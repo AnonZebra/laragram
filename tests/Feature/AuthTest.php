@@ -26,12 +26,12 @@ class AuthTest extends TestCase
     }
 
     /**
-     * Visiting root URL redirects non-logged in user
+     * Visiting profile URL redirects non-logged in user
      * to login screen.
      */
     public function testUnauthRedirect()
     {
-        $response = $this->get('/');
+        $response = $this->get('/profile');
 
         $response
             ->assertStatus(302)
@@ -39,8 +39,8 @@ class AuthTest extends TestCase
     }
 
     /**
-     * Visiting root URL as logged in user
-     * returns home view.
+     * Visiting profile URL as logged in user
+     * returns profile view.
      */
     public function testAuthHome()
     {
@@ -48,7 +48,7 @@ class AuthTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->get('/');
+            ->get('/profile');
 
         $response
             ->assertStatus(200)

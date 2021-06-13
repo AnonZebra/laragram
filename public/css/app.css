@@ -976,3 +976,58 @@ button,
   padding: 1rem;
   border-radius: 1rem;
 }
+
+.photo-user-list {
+  width: 95%;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.photo-user-list-link {
+  display: flex;
+  flex-flow: column nowrap;
+  text-decoration: underline;
+  color: #fdfdfd;
+  text-align: center;
+  padding: 0.2rem 0.4rem;
+  margin: 0 1rem 3rem;
+  background-color: #42c5d4;
+  max-width: 50vw;
+  border-radius: 1rem;
+}
+
+.photo-user-list-link:hover,
+.photo-user-list-link:focus,
+.photo-user-list-link:active {
+  color: #333;
+}
+.photo-user-list-link:hover .photo-user-list-portrait,
+.photo-user-list-link:focus .photo-user-list-portrait,
+.photo-user-list-link:active .photo-user-list-portrait {
+  border-color: #333;
+  box-shadow: 0 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+}
+
+.photo-user-list-name {
+  margin-bottom: 0.2rem;
+}
+
+.photo-user-list-portrait {
+  border-style: solid;
+  border-width: 0.2rem;
+  border-color: #fff;
+  transition: all 0.5s;
+}
+
+@media only screen and (min-width: 800px) {
+  .photo-user-list {
+    width: 95%;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

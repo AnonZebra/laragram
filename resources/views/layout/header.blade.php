@@ -1,6 +1,6 @@
 <header class="site-header">
     <div class="site-title-wrapper">
-        <a id="site-logo" class="site-logo" href="{{ route('guest.showLogin') }}">LaraGram</a>
+        <a id="site-logo" class="site-logo" href="{{ route('newUsers') }}">LaraGram</a>
     </div>
     <nav class="desktop-nav">
         @include('layout.navcontent')

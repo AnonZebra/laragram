@@ -28,5 +28,7 @@
     "submitbtn": "Skicka",
     "imgdesc": "Beskrivning",
     "usernoimages": "Användaren har inte laddat upp några bilder än.",
-    "Image upload": "Bilduppladdning"
+    "Image upload": "Bilduppladdning",
+    "New users": "Nya användare",
+    "nousers": "Det finns inga användare än."
 }

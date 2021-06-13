@@ -22,7 +22,7 @@ Route::middleware(['guest'])->name('guest.')->group(function () {
 });
 
 Route::middleware(['auth'])->name('user.')->group(function () {
-    Route::get('/', [ProfileController::class, 'showProfile'])
+    Route::get('/profile', [ProfileController::class, 'showProfile'])
         ->name('profile');
 
     Route::post('/foo', [ProfileController::class, 'processUpdateProfile'])
@@ -42,3 +42,6 @@ Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])-
 
 Route::get('/user/{id}/photos', [PhotoController::class, 'showPhotoList'])
     ->name('showPhotoList');
+
+Route::get('/', [PhotoController::class, 'showUserList'])
+    ->name('newUsers');
