@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\PhotoComment;
+
 class PhotoPost extends Model
 {
     use HasFactory;
@@ -20,4 +22,12 @@ class PhotoPost extends Model
         'image',
         'updated_at'
     ];
+
+    /**
+     * Get the photo post's associated user comments.
+     */
+    public function comments()
+    {
+        return $this->hasMany(PhotoComment::class);
+    }
 }
