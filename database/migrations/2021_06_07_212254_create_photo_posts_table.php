@@ -17,7 +17,7 @@ class CreatePhotoPostsTable extends Migration
             $table->id();
             $table->string('description', 2000)->nullable();
             $table->text('image');
-            $table->foreignId('user_id')->constrained()->unique();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
