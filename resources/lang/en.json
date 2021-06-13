@@ -16,9 +16,19 @@
     "toomanyloginattempts": "The account has been locked due to too many login attempts having been made. Please try again in 1 minute.",
     "Create account": "Create account",
     "Register": "Register",
+    "Registration": "Registration",
     "An account for that e-mail already exists.": "An account for that e-mail already exists.",
     "Jane Doe": "Jane Doe",
     "Self-introduction": "Self-introduction",
     "Image": "Image",
-    "Update": "Update"
+    "Update": "Update",
+    "ownparticle": "'s ",
+    "images": "images",
+    "Submit image": "Submit image",
+    "submitbtn": "Submit",
+    "imgdesc": "Description",
+    "usernoimages": "The user hasn't uploaded any images yet.",
+    "Image upload": "Image upload",
+    "New users": "New users",
+    "nousers": "There aren't any users yet."
 }

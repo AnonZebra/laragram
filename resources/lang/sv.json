@@ -16,9 +16,19 @@
     "toomanyloginattempts": "Kontot har låsts till följd av att för många inloggningsförsök gjorts. Vänligen försök igen om en minut.",
     "Create account": "Skapa konto",
     "Register": "Registrera",
+    "Registration": "Registrering",
     "An account for that e-mail already exists.": "Det finns redan ett konto för den e-mailadressen.",
     "Jane Doe": "Anna Svensson",
     "Self-introduction": "Självintroduktion",
     "Image": "Bild",
-    "Update": "Uppdatera"
+    "Update": "Uppdatera",
+    "ownparticle": "s ",
+    "images": "bilder",
+    "Submit image": "Ladda upp bild",
+    "submitbtn": "Skicka",
+    "imgdesc": "Beskrivning",
+    "usernoimages": "Användaren har inte laddat upp några bilder än.",
+    "Image upload": "Bilduppladdning",
+    "New users": "Nya användare",
+    "nousers": "Det finns inga användare än."
 }

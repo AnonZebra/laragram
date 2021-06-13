@@ -11,15 +11,17 @@ $white: #fdfdfd;
 $strong-white: #fff;
 $light-grey: #f2f2f2;
 $black: #333;
+$color-strong-black: #000;
 
 $container-background-color: #fefefe;
-$body-background-color: $container-background-color;
+$color-body-background: $container-background-color;
 
 $modular-factor: 1.2;
 $base-font-size: 1rem;
 $base-line-height: 1.4;
 $base-gap-size: $base-font-size * $base-line-height;
-$heading-font-family: 'Pacifico', cursive;
+$title-font-family: 'Meddon', cursive;
+$heading-font-family: 'Pacifico', 'New Tegomin', cursive;
 $body-font-family: 'Rubik', sans-serif;
 
 $h1-font-size: $base-font-size * pow($modular-factor, 4);
@@ -31,6 +33,14 @@ $inverted-text-color: $white;
 $gradient-base-lightness-shift: 20%;
 
 $warning-color: #b33;
+
+/* navigation */
+$navigation-height-small-screen: 60px;
+$navigation-height-short-screen: 15vh;
+$navigation-height-large-screen: 100px;
+$footer-height-small-screen: 10vh;
+$footer-height-short-screen: 15vh;
+$footer-height-large-screen: 100px;
 
 /* buttons */
 $primary-button-color: $primary-middle;
@@ -44,4 +54,4 @@ $form-background-color: $primary-light;
 $input-placeholder-color: #b0b0b0;
 
 /* media tags */
-$small-screen-max-width: 900px;
+$media-width-max-small-screen: 800px;

@@ -15,7 +15,7 @@
     <label for="name">{{ __("Name") }}</label>
     <input id="name" name="name" type="text" placeholder="{{ __('Jane Doe') }}" minlength=3>
     <label for="email">{{ __("E-mail address") }}</label>
-    <input id="email" name="email" type="text" placeholder="rei@example.com" pattern=".+@.+\..+">
+    <input id="email" name="email" type="text" placeholder="{{ __('jane@example.com') }}" pattern=".+@.+\..+">
     <label for="password">{{ __("Password") }}</label>
     <input id="password" name="password" type="password" minlength=6>
     <label for="password_confirmation">{{ __("Password (confirm)") }}</label>

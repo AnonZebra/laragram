@@ -16,9 +16,19 @@
     "toomanyloginattempts": "数回ログインしようとされた事が原因で、アカウントがロックされました。１分後またログインしてみて下さい。",
     "Create account": "アカウント登録",
     "Register": "登録",
+    "Registration": "登録",
     "An account for that e-mail already exists.": "メールアドレスと一致するアカウントが既存しています",
     "Jane Doe": "田中はな",
     "Self-introduction": "自己紹介",
     "Image": "画像",
-    "Update": "更新"
+    "Update": "更新",
+    "ownparticle": "の",
+    "images": "画像",
+    "Submit image": "画像投稿",
+    "submitbtn": "投稿",
+    "imgdesc": "説明",
+    "usernoimages": "ユーザーはまだ画像をアップロードしていません。",
+    "Image upload": "画像投稿",
+    "New users": "新たなユーザー",
+    "nousers": "まだ誰も登録されていません。"
 }

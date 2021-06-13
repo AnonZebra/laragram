@@ -8,7 +8,7 @@ html {
 
 body {
     height: 100%;
-    background-color: $body-background-color;
+    background-color: $color-body-background;
     font-family: $body-font-family;
     line-height: $base-line-height;
     color: $base-text-color;
@@ -19,6 +19,7 @@ main {
     flex-flow: column nowrap;
     padding: 0 0rem;
     align-items: center;
+    margin-top: $navigation-height-small-screen;
 }
 
 h1 {

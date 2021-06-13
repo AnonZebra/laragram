@@ -1,21 +1,11 @@
 <header class="site-header">
-    <nav>
-        <ul>
-        @if (!Auth::user())
-            <li>
-                <a href="{{ route('guest.showLogin') }}">{{ __("Log in") }}</a>
-            </li>
-            <li>
-                <a href="{{ route('guest.showRegistration') }}">{{ __("Register") }}</a>
-            </li>
-        @else
-            <li>
-                <a href="{{ route('user.profile') }}">{{ __("Home") }}</a>
-            </li>
-        @endif
-        </ul>
+    <div class="site-title-wrapper">
+        <a id="site-logo" class="site-logo" href="{{ route('newUsers') }}">LaraGram</a>
+    </div>
+    <nav class="desktop-nav">
+        @include('layout.navcontent')
     </nav>
-    <div class="language-picker-wrapper">
+    <div class="desktop-language-picker-wrapper">
         <ul class="language-picker" id="language-picker">
             <li>文/A</li>
             <li class="language-choice display-none"><a href="{{ route('updateLocale', ['language' => 'ja']) }}">日本語</a></li>
@@ -23,4 +13,18 @@
             <li class="language-choice display-none"><a href="{{ route('updateLocale', ['language' => 'sv']) }}">SV</a></li>
         </ul>
     </div>
+    <a id="menu-toggle" href="#" class="menu-toggle">
+        <img src="{{ URL::to('/') }}/siteimg/hamburger-menu.svg" alt="An icon consisting of three lines, indicating a menu toggler here."></img>
+    </a>
 </header>
+
+<nav id="mobile-nav" class="mobile-nav">
+    @include('layout.navcontent')
+    <ul class="mobile-language-picker" id="mobile-language-picker">
+            <li>文/A</li>
+            <li class="language-choice display-none"><a href="{{ route('updateLocale', ['language' => 'ja']) }}">日本語</a></li>
+            <li class="language-choice display-none"><a href="{{ route('updateLocale', ['language' => 'en']) }}">EN</a></li>
+            <li class="language-choice display-none"><a href="{{ route('updateLocale', ['language' => 'sv']) }}">SV</a></li>
+    </ul>
+</nav>
+<div id="mobile-nav-shadow" class="mobile-nav-shadow"></div>
