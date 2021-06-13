@@ -75,35 +75,35 @@ class PhotoTest extends TestCase
             );
     }
 
-    // /**
-    //  * Guest user can view user's list of photos.
-    //  */
-    // public function testViewSingleUserPhotos()
-    // {
-    //     $userInfo = $this->userInfo;
-    //     $user = User::create([
-    //         'name' => $userInfo['name'],
-    //         'email' => 'foo@example.com',
-    //         'password' => bcrypt($userInfo['password']),
-    //     ]);
-    //     Storage::fake('profiles');
-    //     $fName = 'temp.jpg';
-    //     $file = UploadedFile::fake()->image($fName);
-    //     $description = "Such a cool seamstress!";
-    //     $this->actingAs($user);
-    //     $response = $this->post(route('user.processPhotoForm'), [
-    //         'image' => $file,
-    //         'description' => $description
-    //     ]);
+    /**
+     * Guest user can view user's list of photos.
+     */
+    public function testViewSingleUserPhotos()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::create([
+            'name' => $userInfo['name'],
+            'email' => 'foo@example.com',
+            'password' => bcrypt($userInfo['password']),
+        ]);
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $response = $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
 
-    //     $response = $this->get(
-    //         route(
-    //             'guest.showUserPhotos', 
-    //             ['username' => preg_replace(' ', '_', $user->name)]
-    //         )
-    //     );
+        $response = $this->get(
+            route(
+                'showPhotoList', 
+                ['id' => $user->id]
+            )
+        );
 
-    //     $response
-    //         ->assertStatus(200);
-    // }
+        $response
+            ->assertStatus(200);
+    }
 }
