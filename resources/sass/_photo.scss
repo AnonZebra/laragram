@@ -150,10 +150,10 @@
     display: grid;
     // align-items: center;
     text-align: left;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40px 120px auto;
     grid-template-rows: 1fr 1fr;
     margin-top: 0.2rem;
-    margin-left: 1rem;
+    margin-left: 0.2rem;
     color: $base-text-color;
     text-decoration: none;
 }
