@@ -35,7 +35,7 @@ photo-detail-main
                 @else
                     <img src="{{ URL::to('/') }}/siteimg/unknown-person-black.svg" class="photo-commenter-detail-portrait profile-image-mini"></img>
                 @endif
-                <span class="photo-detail-commenter-name">{{ $$comment->user->name }}</span>
+                <span class="photo-detail-commenter-name">{{ $comment->user->name }}</span>
                 <span class="photo-detail-comment-date">{{ date_parse($comment->updated_at)['year'] }}</span>
             </a>
             <p class="photo-detail-comment-body">{{ $comment->body }}</span>
