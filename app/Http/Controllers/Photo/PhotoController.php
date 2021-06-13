@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+use App\Http\Requests\PhotoCommentFormRequest;
 use App\Http\Requests\PhotoFormRequest;
 use App\Models\PhotoPost;
+use App\Models\PhotoComment;
 
 use App\Models\User;
 
@@ -42,20 +44,20 @@ class PhotoController extends Controller
             'description' => $request->description
         ]);
         return redirect(route('user.showPhotoForm'))
-            ->with(['upload_success' => __("Upload was successful")]);;
+            ->with(['upload_success' => __("Upload was successful")]);
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param $id
+     * @param $photoOwnerId
      * @return \Illuminate\View\View
      */
-    public function showPhotoList(Request $request, $id): View
+    public function showPhotoList(Request $request, $photoOwnerId): View
     {
-        $user = User::getUserById($id);
+        $user = User::getUserById($photoOwnerId);
         $userPhotoPosts = $user->photoPosts;
         return view('photo.photo_list', [
-            'userId' => $user->id,
+            'photoOwnerId' => $user->id,
             'username' => $user->name,
             'photoPosts' => $userPhotoPosts
         ]);
@@ -86,9 +88,49 @@ class PhotoController extends Controller
         $post = $user->photoPosts->where('id', $photoId)->first();
         return view('photo.photo_detail', [
             'postOwnerPortrait' => $user->profile->image,
-            'postOwnerId' => $user->id,
+            'photoOwnerId' => $user->id,
             'postOwnerName' => $user->name,
+            'post' => $post,
+            'comments' => $post->comments
+        ]);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param $photoOwnerId
+     * @param $photoId
+     * @return \Illuminate\View\View
+     */
+    public function showPhotoCommentForm(Request $request, $photoOwnerId, $photoId): View
+    {
+        $user = User::getUserById($photoOwnerId);
+        $post = $user->photoPosts->where('id', $photoId)->first();
+        return view('photo.photo_comment_form', [
+            'photoOwnerId' => $user->id,
             'post' => $post
         ]);
+    }
+
+    /**
+     * @param App\Http\Requests\PhotoCommentFormRequest $request
+     * @param $photoOwnerId
+     * @param $photoId
+     */
+    public function processPhotoCommentForm(PhotoCommentFormRequest $request, $photoOwnerId, $photoId)
+    {
+        $commenterId = $request->user()->id;
+
+        PhotoComment::create([
+            'user_id' => $commenterId,
+            'photo_post_id' => $photoId,
+            'body' => $request->comment
+        ]);
+
+        return redirect(
+            route(
+                'showPhotoDetail', 
+                ['photoOwnerId' => $photoOwnerId, 'photoId' => $photoId]
+            )
+        );
     }
 }

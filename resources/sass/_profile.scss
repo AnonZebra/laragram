@@ -20,3 +20,16 @@
     height: 50px;
     width: 50px;
 }
+
+.profile-image-mini {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+@media only screen and (min-width: $media-width-max-small-screen) {
+    .profile-image-small {
+        height: 75px;
+        width: 75px;
+    }
+}

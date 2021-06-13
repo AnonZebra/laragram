@@ -85,6 +85,8 @@
     margin: 0;
     border: none;
     padding: 0;
+    border-bottom: solid $base-text-color 0.1rem;
+    margin-bottom: 2rem;
 }
 
 .photo-detail-image {
@@ -94,25 +96,86 @@
 }
 
 .photo-detail-caption {
-    text-align: center;
-    border-bottom: solid $base-text-color 0.1rem;
+    text-align: left;
+    padding-bottom: 2rem;
+    margin: 0 1rem; 
 }
 
 .photo-detail-owner {
+    display: flex;
+    align-items: center;
     text-align: left;
     margin-top: 0.2rem;
     margin-left: 1rem;
     color: $base-text-color;
 }
 
+.photo-detail-owner-name {
+    font-size: $base-font-size * pow($modular-factor, 1);
+}
+
 .photo-user-detail-portrait {
-    width: 2rem;
-    height: 2rem;
     border-style: solid;
-    border-width: 0.1rem;
+    border-width: 0.09rem;
     border-color: $black;
     display: inline;
     vertical-align: bottom;
+    margin-right: 1rem;
+}
+
+.photo-comment-list {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    width: 60vw;
+}
+
+.photo-comment-li {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem auto;
+    border: solid $base-text-color 0.1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+.photo-detail-comment-body {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.photo-detail-commenter {
+    display: grid;
+    // align-items: center;
+    text-align: left;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 0.2rem;
+    margin-left: 1rem;
+    color: $base-text-color;
+    text-decoration: none;
+}
+
+.photo-detail-commenter-name {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    font-size: $base-font-size / $modular-factor;
+    text-decoration: underline;
+}
+
+.photo-detail-comment-date {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    font-size: $base-font-size / $modular-factor;
+    display: inline-block;
+}
+
+.photo-commenter-detail-portrait {
+    @extend .photo-user-detail-portrait;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
 }
 
 @media only screen and (min-width: $media-width-max-small-screen) {
@@ -131,4 +194,9 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     } 
+
+    .photo-user-detail-portrait {
+        border-width: 0.1rem;
+    }
 }
+

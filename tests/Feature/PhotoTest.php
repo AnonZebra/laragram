@@ -11,6 +11,7 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\PhotoPost;
+use App\Models\PhotoComment;
 
 class PhotoTest extends TestCase
 {
@@ -163,7 +164,7 @@ class PhotoTest extends TestCase
 
         $response = $this->get(
             route('showPhotoDetail', [
-                'userId' => $user->id,
+                'photoOwnerId' => $user->id,
                 'photoId' => $pP->id
             ])
         );
@@ -171,5 +172,62 @@ class PhotoTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertViewHas('postOwnerName', $user->name);
+    }
+
+    /**
+     * Registered user can comment on another user's image.
+     */
+    public function testCommentOnPhoto()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::factory()->create();
+        $commentUser = User::factory()->create();
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
+        Auth::logout();
+
+        $pP = PhotoPost::all()->first();
+
+        $this->actingAs($commentUser);
+
+        $getResponse = $this->get(
+            route('user.showPhotoCommentForm', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id
+            ])
+        );
+
+        $getResponse
+            ->assertStatus(200);
+        
+        $postResponse = $this->post(
+            route('user.showPhotoCommentForm', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id
+            ]),
+            ['comment' => 'foobar']
+        );
+
+        $postResponse
+            ->assertStatus(302)
+            ->assertRedirect(
+                route('showPhotoDetail', [
+                    'photoOwnerId' => $user->id,
+                    'photoId' => $pP->id
+                ])
+            );
+        
+        $comment = PhotoComment::all()->first();
+
+        $this->assertEquals($comment->id, 1);
+        $this->assertEquals($comment->user_id, $commentUser->id);
+        $this->assertEquals($comment->photo_post_id, $pP->id);
     }
 }

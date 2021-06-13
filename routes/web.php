@@ -36,6 +36,12 @@ Route::middleware(['auth'])->name('user.')->group(function () {
     
     Route::post('/photo/submit', [PhotoController::class, 'processPhotoForm'])
         ->name('processPhotoForm');
+    
+    Route::get('/user/{photoOwnerId}/photos/{photoId}/comment', [PhotoController::class, 'showPhotoCommentForm'])
+        ->name('showPhotoCommentForm');
+    
+    Route::post('/user/{photoOwnerId}/photos/{photoId}/comment', [PhotoController::class, 'processPhotoCommentForm'])
+        ->name('processPhotoCommentForm');
 });
 
 Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])->name('updateLocale');
@@ -43,7 +49,7 @@ Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])-
 Route::get('/user/{id}/photos', [PhotoController::class, 'showPhotoList'])
     ->name('showPhotoList');
 
-Route::get('/user/{userId}/photos/{photoId}', [PhotoController::class, 'showPhotoDetail'])
+Route::get('/user/{photoOwnerId}/photos/{photoId}', [PhotoController::class, 'showPhotoDetail'])
     ->name('showPhotoDetail');
 
 Route::get('/', [PhotoController::class, 'showUserList'])
