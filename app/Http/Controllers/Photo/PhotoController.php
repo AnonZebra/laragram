@@ -52,9 +52,12 @@ class PhotoController extends Controller
      * @param $photoOwnerId
      * @return \Illuminate\View\View
      */
-    public function showPhotoList(Request $request, $photoOwnerId): View
+    public function showPhotoList(Request $request, $photoOwnerId)
     {
         $user = User::getUserById($photoOwnerId);
+        if (!$user) {
+            return redirect(route('newUsers'));
+        }
         $userPhotoPosts = $user->photoPosts;
         return view('photo.photo_list', [
             'photoOwnerId' => $user->id,
@@ -78,14 +81,25 @@ class PhotoController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param $userId
+     * @param $photoOwnerId
      * @param $photoId
      * @return \Illuminate\View\View
      */
-    public function showPhotoDetail(Request $request, $userId, $photoId): View
+    public function showPhotoDetail(Request $request, $photoOwnerId, $photoId)
     {
-        $user = User::getUserById($userId);
+        $user = User::getUserById($photoOwnerId);
+        if (!$user) {
+            return redirect(route('newUsers'));
+        }
         $post = $user->photoPosts->where('id', $photoId)->first();
+        if (!$post) {
+            return redirect(
+                route(
+                    'showPhotoList', 
+                    ['photoOwnerId' => $photoOwnerId]
+                )
+            );
+        }
         return view('photo.photo_detail', [
             'postOwnerPortrait' => $user->profile->image,
             'photoOwnerId' => $user->id,

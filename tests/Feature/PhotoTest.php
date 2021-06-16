@@ -102,7 +102,7 @@ class PhotoTest extends TestCase
         $response = $this->get(
             route(
                 'showPhotoList', 
-                ['id' => $user->id]
+                ['photoOwnerId' => $user->id]
             )
         );
 
@@ -160,7 +160,7 @@ class PhotoTest extends TestCase
         ]);
         Auth::logout();
 
-        $pP = PhotoPost::all()->first();
+        $pP = $user->photoPosts->first();
 
         $response = $this->get(
             route('showPhotoDetail', [
@@ -172,6 +172,60 @@ class PhotoTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertViewHas('postOwnerName', $user->name);
+    }
+
+    /**
+     * Guest user trying to get detail view of an image for a user
+     * where the image doesn't exist is redirected to the user's main page.
+     */
+    public function testViewSingleNonexistentPhoto()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::factory()->create();
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
+        Auth::logout();
+
+        $pP = $user->photoPosts->first();
+
+        $response = $this->get(
+            route('showPhotoDetail', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id + 1
+            ])
+        );
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect(
+                route('showPhotoList', [
+                    'photoOwnerId' => $user->id
+                ])
+            );
+    }
+
+    /**
+     * Guest user trying to get photo list view of an image for a user
+     * that doesn't exist is redirected.
+     */
+    public function testViewSingleNonexistentUserPhotoList()
+    {
+        $response = $this->get(
+            route('showPhotoList', [
+                'photoOwnerId' => 9999
+            ])
+        );
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect();
     }
 
     /**

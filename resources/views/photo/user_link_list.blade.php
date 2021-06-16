@@ -14,7 +14,7 @@ photo-user-list-main
 <ul class="photo-user-list">
     @foreach ($users as $user)
         <li>
-            <a href="{{ route('showPhotoList', ['id' => $user->id]) }}" class="photo-user-list-link">
+            <a href="{{ route('showPhotoList', ['photoOwnerId' => $user->id]) }}" class="photo-user-list-link">
                 <p class="photo-user-list-name">{{ $user->name }}</p>
                 <div class="photo-user-list-portrait-wrapper">
                     @if ($user->profile->image)

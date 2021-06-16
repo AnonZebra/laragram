@@ -11,7 +11,7 @@ photo-detail-main
 @section('content')
 <figure class="photo-detail-figure">
     <img src="{{ URL::to('/') }}{{ Storage::url($post->image) }}" class="photo-detail-image" alt="{{ $post->description }}">
-    <a rel="author" href="{{ route('showPhotoList', ['id' => $photoOwnerId]) }}" class="photo-detail-owner">
+    <a rel="author" href="{{ route('showPhotoList', ['photoOwnerId' => $photoOwnerId]) }}" class="photo-detail-owner">
         @if ($postOwnerPortrait)
             <img src="{{ URL::to('/') }}{{ Storage::url($postOwnerPortrait) }}" class="photo-user-detail-portrait profile-image-small"></img>
         @else
@@ -29,7 +29,7 @@ photo-detail-main
 <ul class="photo-comment-list">
     @foreach ($comments as $comment)
         <li class="photo-comment-li">
-            <a rel="author" href="{{ route('showPhotoList', ['id' => $comment->user->id]) }}" class="photo-detail-commenter">
+            <a rel="author" href="{{ route('showPhotoList', ['photoOwnerId' => $comment->user->id]) }}" class="photo-detail-commenter">
                 @if ($comment->user->profile->image)
                     <img src="{{ URL::to('/') }}{{ Storage::url($comment->user->profile->image) }}" class="photo-commenter-detail-portrait profile-image-mini"></img>
                 @else
