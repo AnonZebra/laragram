@@ -17,9 +17,12 @@ photo-detail-main
         @else
             <img src="{{ URL::to('/') }}/siteimg/unknown-person-black.svg" class="photo-user-detail-portrait profile-image-small"></img>
         @endif
+        @php
+            $pUpdateDate = date_parse($post->updated_at)
+        @endphp
         <span class="photo-detail-owner-name">{{ $postOwnerName }}</span>
-    </a>
-    <figcaption class="photo-detail-caption">{{ $post->description }}</figcaption>
+    </a> 
+    <figcaption class="photo-detail-caption">({{ $pUpdateDate['year'] }}-{{ str_pad($pUpdateDate['month'], 2, 0, STR_PAD_LEFT) }}-{{ str_pad($pUpdateDate['day'], 2, 0, STR_PAD_LEFT) }} {{ str_pad($pUpdateDate['hour'], 2, 0, STR_PAD_LEFT) }}:{{ str_pad($pUpdateDate['minute'], 2, 0, STR_PAD_LEFT) }}) {{ $post->description }} </figcaption>
 </figure>
 <a href="{{ route('user.showPhotoCommentForm', ['photoOwnerId' => $photoOwnerId, 'photoId' => $post->id]) }}" class="button secondary-button">
     {{ __('Add comment') }}
@@ -36,7 +39,10 @@ photo-detail-main
                     <img src="{{ URL::to('/') }}/siteimg/unknown-person-black.svg" class="photo-commenter-detail-portrait profile-image-mini"></img>
                 @endif
                 <span class="photo-detail-commenter-name">{{ $comment->user->name }}</span>
-                <span class="photo-detail-comment-date">{{ date_parse($comment->updated_at)['year'] }}</span>
+                @php
+                $cUpdateDate = date_parse($comment->updated_at)
+                @endphp
+                <span class="photo-detail-comment-date">{{ $cUpdateDate['year'] }}-{{ str_pad($cUpdateDate['month'], 2, 0, STR_PAD_LEFT) }}-{{ str_pad($cUpdateDate['day'], 2, 0, STR_PAD_LEFT) }} {{ str_pad($cUpdateDate['hour'], 2, 0, STR_PAD_LEFT) }}:{{ str_pad($cUpdateDate['minute'], 2, 0, STR_PAD_LEFT) }}</span>
             </a>
             <p class="photo-detail-comment-body">{{ $comment->body }}</span>
         </li>
