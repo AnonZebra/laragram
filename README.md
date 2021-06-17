@@ -31,7 +31,7 @@ Once you've installed, got your database running, and made sure that permissions
 ## Features
 The app allows users to register and login. E-mails are used as unique user identifiers.
 
-<div style="text-align:center;"><img src="README_resources/screenshot_register.png" style="max-height:400px; max-width:200px;"></img></div>
+<div align="middle"><img src="README_resources/screenshot_register.png" width=auto height=400px margin="0px auto 0px"></img></div>
 
 Once logged in, users can set a profile image and description, though currently the description is only visible to the users themselves. They can also upload photos to their own 'photo blog'.
 
@@ -39,7 +39,7 @@ Guests and users can currently only explore other users' photos through a 'new u
 
 Registered users may comment on photos. It is currently not possible to reply to comments.
 
-<div style="text-align:center;"><img src="README_resources/screenshot_comments.png" style="max-height:400px; max-width:200px;"></img></div>
+<div align="middle"><img src="README_resources/screenshot_comments.png" width=auto height=400px margin="0px auto 0px"></img></div>
 
 The app supports Japanese (set as default), English and Swedish language settings. This can be toggled with a submenu in the header (or the 'sidebar', if viewing the app on a device with a smaller screen).
 
