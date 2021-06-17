@@ -1,4 +1,5 @@
 <?php
+
 // using material from https://github.com/Laravel-Lang/lang/tree/master/locales/sv
 
 return [

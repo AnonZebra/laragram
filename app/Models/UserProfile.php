@@ -23,7 +23,7 @@ class UserProfile extends Model
 
     /**
      * Set profile image name and save.
-     * 
+     *
      * @param string $newImage
      */
     public function updateImage(string $newImage): void
@@ -34,7 +34,7 @@ class UserProfile extends Model
 
     /**
      * Set profile description and save.
-     * 
+     *
      * @param string $newDescription
      */
     public function updateDescription(string $newDescription): void
@@ -45,7 +45,7 @@ class UserProfile extends Model
 
     /**
      * Set profile image name and description and save.
-     * 
+     *
      * @param string $newImage
      * @param string $newDescription
      */

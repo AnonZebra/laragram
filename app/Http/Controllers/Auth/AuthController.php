@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests\LoginFormRequest;
-use App\Http\Requests\RegisterFormRequest; 
-
+use App\Http\Requests\RegisterFormRequest;
 use App\Models\User;
 
+/**
+ * Suppress warnings about static access to Laravel Facade classes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
 class AuthController extends Controller
 {
 
@@ -25,7 +28,7 @@ class AuthController extends Controller
         return view('login.login_form');
     }
 
-    public function __construct(User $user) 
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -43,7 +46,7 @@ class AuthController extends Controller
                 'login_error' => __("The account is locked. Please try again in one minute."),
             ]);
         }
-        
+
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -86,10 +89,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function showRegistration(Request $request)
+    public function showRegistration()
     {
         return view('register.register_form');
     }
@@ -109,12 +111,12 @@ class AuthController extends Controller
             ]);
         }
 
-        User::create([
+        $this->user->create([
             'name' => $userInfo['name'],
             'email' => $userInfo['email'],
             'password' => bcrypt($userInfo['password']),
         ]);
-        
+
         Auth::attempt([
             'email' => $userInfo['email'],
             'password' => $userInfo['password']

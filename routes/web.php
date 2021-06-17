@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Locale\LocaleController;
 use App\Http\Controllers\Photo\PhotoController;
@@ -30,16 +29,16 @@ Route::middleware(['auth'])->name('user.')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'processLogout'])
         ->name('processLogout');
-    
+
     Route::get('/photo/add', [PhotoController::class, 'showPhotoForm'])
         ->name('showPhotoForm');
-    
+
     Route::post('/photo/submit', [PhotoController::class, 'processPhotoForm'])
         ->name('processPhotoForm');
-    
+
     Route::get('/user/{photoOwnerId}/photos/{photoId}/comment', [PhotoController::class, 'showPhotoCommentForm'])
         ->name('showPhotoCommentForm');
-    
+
     Route::post('/user/{photoOwnerId}/photos/{photoId}/comment', [PhotoController::class, 'processPhotoCommentForm'])
         ->name('processPhotoCommentForm');
 });

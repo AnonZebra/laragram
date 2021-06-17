@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
 use App\Http\Requests\ProfileFormRequest;
 
+/**
+ * Suppress overly aggressive PHPMD warning about using else.
+ * (https://stackoverflow.com/questions/44100497/else-is-never-
+ * necessary-and-you-can-simplify-the-code-to-work-without-else)
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
+ */
 class ProfileController extends Controller
 {
     /**

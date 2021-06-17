@@ -3,9 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use Tests\TestCase;
-
 use App\Models\User;
 
 /**
@@ -79,7 +77,7 @@ class AuthTest extends TestCase
     }
 
     /**
-     * POSTing to login route with valid credentials 
+     * POSTing to login route with valid credentials
      * makes the session authenticated/logged in,
      * and redirects user to home route.
      */
@@ -107,7 +105,7 @@ class AuthTest extends TestCase
     }
 
     /**
-     * POSTing to login route with invalid credentials 
+     * POSTing to login route with invalid credentials
      * redirects user to root route (since there is no
      * other route to send user 'back to').
      */
@@ -145,24 +143,24 @@ class AuthTest extends TestCase
 
         for ($i = 0; $i < 6; $i++) {
             $response = $this->post(
-                route('guest.processLogin'), 
+                route('guest.processLogin'),
                 [
                     'email' => $userInfo['email'],
                     'password' => 'wrong_pass'
                 ]
             );
         }
-        
+
         $dbUser = User::where('email', $userInfo['email'])->first();
 
         $this->assertGuest();
         $this->assertTrue($dbUser->locked_flag);
-        
+
         $this->assertEquals($dbUser->error_count, 6);
     }
 
     /**
-     * POSTing to registration route with valid credentials 
+     * POSTing to registration route with valid credentials
      * creates a new user.
      */
     public function testRegister()

@@ -23,7 +23,7 @@ phpcpd: prepare
 	$(PHPCPD) app routes tests resources database | tee build/phpcpd
 
 phpmd: prepare
-	- [ ! -f .phpmd.xml ] || $(PHPMD) app,routes,tests,resources,database text .phpmd.xml | tee build/phpmd
+	- [ ! -f .phpmd.xml ] || $(PHPMD) app/Http/Controllers,app/Http/Requests,app/Models,app/Observers,routes/web.php,database/factories text .phpmd.xml | tee build/phpmd
 
 larastan: prepare
 	- $(LARASTAN) analyse --memory-limit=2G | tee build/larastan

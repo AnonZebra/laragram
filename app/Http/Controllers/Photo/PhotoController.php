@@ -5,16 +5,26 @@ namespace App\Http\Controllers\Photo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
 use App\Http\Requests\PhotoCommentFormRequest;
 use App\Http\Requests\PhotoFormRequest;
 use App\Models\PhotoPost;
 use App\Models\PhotoComment;
-
 use App\Models\User;
 
 class PhotoController extends Controller
 {
+
+    private $user;
+    private $photoPost;
+    private $photoComment;
+
+    public function __construct(PhotoPost $photoPost, User $user, PhotoComment $photoComment)
+    {
+        $this->photoPost = $photoPost;
+        $this->user = $user;
+        $this->photoComment = $photoComment;
+    }
+
     /**
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
@@ -38,7 +48,7 @@ class PhotoController extends Controller
         $fileName = $request->file('image')->getClientOriginalName();
         $dirPath = 'public/images/' . $userDirName;
         $storedImage = $request->image->storeAs($dirPath, $fileName);
-        PhotoPost::create([
+        $this->photoPost->create([
             'user_id' => $userId,
             'image' => $storedImage,
             'description' => $request->description
@@ -48,13 +58,12 @@ class PhotoController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @param string $photoOwnerId
      * @return \Illuminate\View\View
      */
-    public function showPhotoList(Request $request, string $photoOwnerId)
+    public function showPhotoList(string $photoOwnerId)
     {
-        $user = User::getUserById($photoOwnerId);
+        $user = $this->user->getUserById($photoOwnerId);
         if (!$user) {
             return redirect(route('newUsers'));
         }
@@ -67,12 +76,11 @@ class PhotoController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
-    public function showUserList(Request $request): View
+    public function showUserList(): View
     {
-        $users = User::orderByDesc('created_at')->limit(12)->get();
+        $users = $this->user->orderByDesc('created_at')->limit(12)->get();
 
         return view('photo.user_link_list', [
             'users' => $users
@@ -80,14 +88,13 @@ class PhotoController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @param string $photoOwnerId
      * @param string $photoId
      * @return \Illuminate\View\View
      */
-    public function showPhotoDetail(Request $request, string $photoOwnerId, string $photoId)
+    public function showPhotoDetail(string $photoOwnerId, string $photoId)
     {
-        $user = User::getUserById($photoOwnerId);
+        $user = $this->user->getUserById($photoOwnerId);
         if (!$user) {
             return redirect(route('newUsers'));
         }
@@ -95,7 +102,7 @@ class PhotoController extends Controller
         if (!$post) {
             return redirect(
                 route(
-                    'showPhotoList', 
+                    'showPhotoList',
                     ['photoOwnerId' => $photoOwnerId]
                 )
             );
@@ -110,14 +117,13 @@ class PhotoController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @param string $photoOwnerId
      * @param string $photoId
      * @return \Illuminate\View\View
      */
-    public function showPhotoCommentForm(Request $request, string $photoOwnerId, string $photoId): View
+    public function showPhotoCommentForm(string $photoOwnerId, string $photoId): View
     {
-        $user = User::getUserById($photoOwnerId);
+        $user = $this->user->getUserById($photoOwnerId);
         $post = $user->photoPosts->where('id', $photoId)->first();
         return view('photo.photo_comment_form', [
             'photoOwnerId' => $user->id,
@@ -134,7 +140,7 @@ class PhotoController extends Controller
     {
         $commenterId = $request->user()->id;
 
-        PhotoComment::create([
+        $this->photoComment->create([
             'user_id' => $commenterId,
             'photo_post_id' => $photoId,
             'body' => $request->comment
@@ -142,7 +148,7 @@ class PhotoController extends Controller
 
         return redirect(
             route(
-                'showPhotoDetail', 
+                'showPhotoDetail',
                 ['photoOwnerId' => $photoOwnerId, 'photoId' => $photoId]
             )
         );

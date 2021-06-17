@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-
 use App\Models\User;
 use App\Models\PhotoPost;
 use App\Models\PhotoComment;
@@ -64,7 +63,7 @@ class PhotoTest extends TestCase
             'description' => $description
         ]);
 
-        $dbDesc = PhotoPost::where('user_id', $user->id)->first()->description;        
+        $dbDesc = PhotoPost::where('user_id', $user->id)->first()->description;
 
         //description updated
         $this->assertEquals($dbDesc, $description);
@@ -101,7 +100,7 @@ class PhotoTest extends TestCase
 
         $response = $this->get(
             route(
-                'showPhotoList', 
+                'showPhotoList',
                 ['photoOwnerId' => $user->id]
             )
         );
@@ -123,7 +122,7 @@ class PhotoTest extends TestCase
         $fName = 'temp.jpg';
         $file = UploadedFile::fake()->image($fName);
         $description = "Such a cool seamstress!";
-        foreach($genUsers->all() as $user) {
+        foreach ($genUsers->all() as $user) {
             $this->actingAs($user);
             $this->post(route('user.processPhotoForm'), [
                 'image' => $file,
@@ -138,7 +137,7 @@ class PhotoTest extends TestCase
 
         $response
             ->assertStatus(200);
-        
+
         $this->assertEquals($response['users'][0]->name, $allUsers[0]->name);
     }
 
@@ -260,7 +259,7 @@ class PhotoTest extends TestCase
 
         $getResponse
             ->assertStatus(200);
-        
+
         $postResponse = $this->post(
             route('user.showPhotoCommentForm', [
                 'photoOwnerId' => $user->id,
@@ -277,7 +276,7 @@ class PhotoTest extends TestCase
                     'photoId' => $pP->id
                 ])
             );
-        
+
         $comment = PhotoComment::all()->first();
 
         $this->assertEquals($comment->id, 1);
