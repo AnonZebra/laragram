@@ -1,0 +1,33 @@
+language: php
+
+php:
+  - 7.4
+
+install:
+  - composer self-update
+  - composer install --no-interaction
+
+services:
+  - postgresql
+
+cache:
+  directories:
+    - node_modules
+    - vendor
+
+before_script:
+# set up testing database described in .env.testing, in turn
+# specified for use by .phpunit.xml
+- psql -c "CREATE DATABASE laragram_test_db;" -U postgres
+- psql -c "CREATE USER laragram_test_user WITH LOGIN PASSWORD 'testpass'" -U postgres
+- psql -c 'GRANT ALL PRIVILEGES ON DATABASE laragram_test_db TO laragram_test_user' -U postgres
+# set up 'regular' database described in .env.travis
+- psql -c 'CREATE DATABASE laragram_db;' -U postgres
+- psql -c "CREATE USER laragram_user WITH LOGIN PASSWORD 'travispass'" -U postgres
+- psql -c 'GRANT ALL PRIVILEGES ON DATABASE laragram_db TO laragram_user' -U postgres
+- cp .env.travis .env
+# force flag necessary to avoid request from Laravel to confirm migrate
+- php artisan migrate --env=testing --force -vvv
+
+script: 
+- make setup test

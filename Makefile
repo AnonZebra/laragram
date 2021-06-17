@@ -34,3 +34,9 @@ laratest: prepare
 lint: phpcs phpcpd phpmd larastan
 
 metric: phploc
+
+setup:
+	- php artisan storage:link
+	- php artisan migrate --force -vvv
+	- php artisan migrate --env=testing --force -vvv
+	- php artisan db:seed
