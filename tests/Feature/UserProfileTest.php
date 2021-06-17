@@ -5,9 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-
 use Tests\TestCase;
-
 use App\Models\User;
 use App\Models\UserProfile;
 
@@ -41,7 +39,7 @@ class UserProfileTest extends TestCase
 
     /**
      * A user is able to update their own profile by POSTing
-     * to the corresponding route with image+description, 
+     * to the corresponding route with image+description,
      * whereupon the user is redirected,
      * the description and image paths are updated in the database,
      * and the uploaded image is stored.
@@ -86,7 +84,7 @@ class UserProfileTest extends TestCase
 
     /**
      * A user is able to update their own profile by POSTing
-     * to the corresponding route with just description, 
+     * to the corresponding route with just description,
      * whereupon the user is redirected
      * and the description is updated in the database.
      */
@@ -107,5 +105,4 @@ class UserProfileTest extends TestCase
         // redirected
         $response->assertStatus(302);
     }
-
 }

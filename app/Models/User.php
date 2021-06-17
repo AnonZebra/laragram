@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 use App\Models\UserProfile;
 use App\Models\PhotoPost;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
-    const MAX_LOGIN_FAIL = 5;
+    private const MAX_LOGIN_FAIL = 5;
 
     /**
-     * Minimum time (seconds) that users are locked out for 
+     * Minimum time (seconds) that users are locked out for
      * when failing too many login attempts.
      */
-    const LOCKOUT_TIME = 60;
+    private const LOCKOUT_TIME = 60;
 
     /**
      * The attributes that are mass assignable.
@@ -55,14 +55,14 @@ class User extends Authenticatable
     ];
 
     /**
-     * Returns true, otherwise false, if this user is locked out 
-     * (for preventing brute force attacks), making it 'unlocked' first 
+     * Returns true, otherwise false, if this user is locked out
+     * (for preventing brute force attacks), making it 'unlocked' first
      * if it was previously locked out and the minimum
      * lock out time has passed.
-     * 
+     *
      * @return bool
      */
-    public function isLockedOut(): bool 
+    public function isLockedOut(): bool
     {
         // check if user is currently locked out
         $lockedOut = $this->locked_flag === 1;
@@ -82,11 +82,11 @@ class User extends Authenticatable
     /**
      * Returns the user with an email matching the passed one if it exists,
      * otherwise returns null.
-     * 
+     *
      * @param string $email
      * @return User
      */
-    public static function getUserByEmail($email): ?User 
+    public static function getUserByEmail($email): ?User
     {
         return self::where('email', $email)->first();
     }
@@ -96,10 +96,10 @@ class User extends Authenticatable
      * by 1 and, if it exceeds the maximum allowed number of failed attempts,
      * locks the user account. Returns true if user was locked out, otherwise
      * false.
-     * 
+     *
      * @return boolean
      */
-    public function incrementErrorCount(): bool 
+    public function incrementErrorCount(): bool
     {
         $lockedOut = false;
         $this->error_count++;
@@ -115,10 +115,10 @@ class User extends Authenticatable
     /**
      * Resets the user's 'error count' (count of number of failed login attempts)
      * to 0.
-     * 
+     *
      * @return void
      */
-    public function resetErrorCount(): void 
+    public function resetErrorCount(): void
     {
         $this->error_count = 0;
         $this->save();
@@ -143,12 +143,12 @@ class User extends Authenticatable
     /**
      * Returns the user with an ID matching the passed one if it exists,
      * otherwise returns null.
-     * 
-     * @param string $id
+     *
+     * @param string $userId
      * @return User
      */
-    public static function getUserById($id): ?User 
+    public static function getUserById($userId): ?User
     {
-        return self::where('id', $id)->first();
+        return self::where('id', $userId)->first();
     }
 }

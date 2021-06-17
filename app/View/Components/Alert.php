@@ -8,14 +8,14 @@ class Alert extends Component
 {
     /**
      * Type of message.
-     * 
+     *
      * @var string
      */
     public $type;
 
     /**
      * Message to be displayed.
-     * 
+     *
      * @var string
      */
     public $message;

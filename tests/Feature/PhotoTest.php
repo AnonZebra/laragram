@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-
 use App\Models\User;
 use App\Models\PhotoPost;
 use App\Models\PhotoComment;
@@ -64,7 +63,7 @@ class PhotoTest extends TestCase
             'description' => $description
         ]);
 
-        $dbDesc = PhotoPost::where('user_id', $user->id)->first()->description;        
+        $dbDesc = PhotoPost::where('user_id', $user->id)->first()->description;
 
         //description updated
         $this->assertEquals($dbDesc, $description);
@@ -101,8 +100,8 @@ class PhotoTest extends TestCase
 
         $response = $this->get(
             route(
-                'showPhotoList', 
-                ['id' => $user->id]
+                'showPhotoList',
+                ['photoOwnerId' => $user->id]
             )
         );
 
@@ -123,7 +122,7 @@ class PhotoTest extends TestCase
         $fName = 'temp.jpg';
         $file = UploadedFile::fake()->image($fName);
         $description = "Such a cool seamstress!";
-        foreach($genUsers->all() as $user) {
+        foreach ($genUsers->all() as $user) {
             $this->actingAs($user);
             $this->post(route('user.processPhotoForm'), [
                 'image' => $file,
@@ -138,7 +137,7 @@ class PhotoTest extends TestCase
 
         $response
             ->assertStatus(200);
-        
+
         $this->assertEquals($response['users'][0]->name, $allUsers[0]->name);
     }
 
@@ -160,7 +159,7 @@ class PhotoTest extends TestCase
         ]);
         Auth::logout();
 
-        $pP = PhotoPost::all()->first();
+        $pP = $user->photoPosts->first();
 
         $response = $this->get(
             route('showPhotoDetail', [
@@ -172,6 +171,60 @@ class PhotoTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertViewHas('postOwnerName', $user->name);
+    }
+
+    /**
+     * Guest user trying to get detail view of an image for a user
+     * where the image doesn't exist is redirected to the user's main page.
+     */
+    public function testViewSingleNonexistentPhoto()
+    {
+        $userInfo = $this->userInfo;
+        $user = User::factory()->create();
+        Storage::fake('profiles');
+        $fName = 'temp.jpg';
+        $file = UploadedFile::fake()->image($fName);
+        $description = "Such a cool seamstress!";
+        $this->actingAs($user);
+        $this->post(route('user.processPhotoForm'), [
+            'image' => $file,
+            'description' => $description
+        ]);
+        Auth::logout();
+
+        $pP = $user->photoPosts->first();
+
+        $response = $this->get(
+            route('showPhotoDetail', [
+                'photoOwnerId' => $user->id,
+                'photoId' => $pP->id + 1
+            ])
+        );
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect(
+                route('showPhotoList', [
+                    'photoOwnerId' => $user->id
+                ])
+            );
+    }
+
+    /**
+     * Guest user trying to get photo list view of an image for a user
+     * that doesn't exist is redirected.
+     */
+    public function testViewSingleNonexistentUserPhotoList()
+    {
+        $response = $this->get(
+            route('showPhotoList', [
+                'photoOwnerId' => 9999
+            ])
+        );
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect();
     }
 
     /**
@@ -206,7 +259,7 @@ class PhotoTest extends TestCase
 
         $getResponse
             ->assertStatus(200);
-        
+
         $postResponse = $this->post(
             route('user.showPhotoCommentForm', [
                 'photoOwnerId' => $user->id,
@@ -223,7 +276,7 @@ class PhotoTest extends TestCase
                     'photoId' => $pP->id
                 ])
             );
-        
+
         $comment = PhotoComment::all()->first();
 
         $this->assertEquals($comment->id, 1);

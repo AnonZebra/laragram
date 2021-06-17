@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Locale\LocaleController;
 use App\Http\Controllers\Photo\PhotoController;
@@ -30,23 +29,23 @@ Route::middleware(['auth'])->name('user.')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'processLogout'])
         ->name('processLogout');
-    
+
     Route::get('/photo/add', [PhotoController::class, 'showPhotoForm'])
         ->name('showPhotoForm');
-    
+
     Route::post('/photo/submit', [PhotoController::class, 'processPhotoForm'])
         ->name('processPhotoForm');
-    
+
     Route::get('/user/{photoOwnerId}/photos/{photoId}/comment', [PhotoController::class, 'showPhotoCommentForm'])
         ->name('showPhotoCommentForm');
-    
+
     Route::post('/user/{photoOwnerId}/photos/{photoId}/comment', [PhotoController::class, 'processPhotoCommentForm'])
         ->name('processPhotoCommentForm');
 });
 
 Route::get('/set-locale/{language}', [LocaleController::class, 'updateLocale'])->name('updateLocale');
 
-Route::get('/user/{id}/photos', [PhotoController::class, 'showPhotoList'])
+Route::get('/user/{photoOwnerId}/photos', [PhotoController::class, 'showPhotoList'])
     ->name('showPhotoList');
 
 Route::get('/user/{photoOwnerId}/photos/{photoId}', [PhotoController::class, 'showPhotoDetail'])
