@@ -14,7 +14,7 @@ class LocaleController extends Controller
      * inspired by  
      * https://medium.com/swlh/laravel-localization-and-
      * multi-language-functionality-in-web-554ca8dfa7e8
-     * @param Illuminate\Http\Request $request
+     * @param string $language
      */
     public function updateLocale($language) 
     {

@@ -2,3 +2,12 @@ parameters:
     level: 5
     paths:
         - app
+    ignoreErrors:
+        - '#Method .+ should return .* but returns .*#'
+        - '#Call to an undefined static method .*::create\(\)\.#'
+        - '#Call to an undefined static method .*::where\(\)\.#'
+        - '#Call to an undefined static method .*::orderByDesc\(\)\.#'
+        - '#Access to an undefined property App\\Http\\Requests\\.*Request::\$.*#'
+        - '#Access to an undefined property App\\Models\\User::\$.*#'
+        - '#Access to an undefined property App\\Models\\UserProfile::\$.*#'
+        - '#Method App\\Http\\Middleware\\Authenticate::redirectTo\(\) should return string\|null but return statement is missing.#'

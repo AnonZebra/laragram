@@ -18,7 +18,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param App\Http\Requests\ProfileFormRequest $request
+     * @param \App\Http\Requests\ProfileFormRequest $request
      * @return \Illuminate\Http\Response
      */
     public function processUpdateProfile(ProfileFormRequest $request)

@@ -28,7 +28,7 @@ class PhotoController extends Controller
     }
 
     /**
-     * @param App\Http\Requests\PhotoFormRequest $request
+     * @param \App\Http\Requests\PhotoFormRequest $request
      */
     public function processPhotoForm(PhotoFormRequest $request)
     {
@@ -49,10 +49,10 @@ class PhotoController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param $photoOwnerId
+     * @param string $photoOwnerId
      * @return \Illuminate\View\View
      */
-    public function showPhotoList(Request $request, $photoOwnerId)
+    public function showPhotoList(Request $request, string $photoOwnerId)
     {
         $user = User::getUserById($photoOwnerId);
         if (!$user) {
@@ -81,11 +81,11 @@ class PhotoController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param $photoOwnerId
-     * @param $photoId
+     * @param string $photoOwnerId
+     * @param string $photoId
      * @return \Illuminate\View\View
      */
-    public function showPhotoDetail(Request $request, $photoOwnerId, $photoId)
+    public function showPhotoDetail(Request $request, string $photoOwnerId, string $photoId)
     {
         $user = User::getUserById($photoOwnerId);
         if (!$user) {
@@ -111,11 +111,11 @@ class PhotoController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param $photoOwnerId
-     * @param $photoId
+     * @param string $photoOwnerId
+     * @param string $photoId
      * @return \Illuminate\View\View
      */
-    public function showPhotoCommentForm(Request $request, $photoOwnerId, $photoId): View
+    public function showPhotoCommentForm(Request $request, string $photoOwnerId, string $photoId): View
     {
         $user = User::getUserById($photoOwnerId);
         $post = $user->photoPosts->where('id', $photoId)->first();
@@ -126,11 +126,11 @@ class PhotoController extends Controller
     }
 
     /**
-     * @param App\Http\Requests\PhotoCommentFormRequest $request
-     * @param $photoOwnerId
-     * @param $photoId
+     * @param \App\Http\Requests\PhotoCommentFormRequest $request
+     * @param string $photoOwnerId
+     * @param string $photoId
      */
-    public function processPhotoCommentForm(PhotoCommentFormRequest $request, $photoOwnerId, $photoId)
+    public function processPhotoCommentForm(PhotoCommentFormRequest $request, string $photoOwnerId, string $photoId)
     {
         $commenterId = $request->user()->id;
 

@@ -14,8 +14,11 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+
+    private $user;
+
     /**
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function showLogin(): View
     {
@@ -28,7 +31,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @param App\Http\Requests\LoginFormRequest $request
+     * @param \App\Http\Requests\LoginFormRequest $request
      */
     public function processLogin(LoginFormRequest $request)
     {
@@ -92,7 +95,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\RegisterFormRequest $request
      * @return \Illuminate\Http\Response
      */
     public function processRegistration(RegisterFormRequest $request)
