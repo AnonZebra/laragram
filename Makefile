@@ -25,6 +25,9 @@ phpcpd: prepare
 phpmd: prepare
 	- [ ! -f .phpmd.xml ] || $(PHPMD) app/Http/Controllers,app/Http/Requests,app/Models,app/Observers,routes/web.php,database/factories text .phpmd.xml | tee build/phpmd
 
+phpunit: prepare
+	- [ ! -d "tests" ] || XDEBUG_MODE=coverage $(PHPUNIT) --configuration phpunit.xml | tee build/phpunit
+
 larastan: prepare
 	- $(LARASTAN) analyse --memory-limit=2G | tee build/larastan
 
