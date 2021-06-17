@@ -26,8 +26,6 @@ before_script:
 - psql -c "CREATE USER laragram_user WITH LOGIN PASSWORD 'travispass'" -U postgres
 - psql -c 'GRANT ALL PRIVILEGES ON DATABASE laragram_db TO laragram_user' -U postgres
 - cp .env.travis .env
-# force flag necessary to avoid request from Laravel to confirm migrate
-- php artisan migrate --env=testing --force -vvv
 
 script: 
-- make setup test
+- make larasetup laratest
