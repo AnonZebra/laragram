@@ -1094,8 +1094,8 @@ button,
 }
 
 .photo-detail-image {
-  width: 100vw;
-  height: auto;
+  max-width: 100vw;
+  max-height: 80vh;
 }
 
 .photo-detail-caption {
