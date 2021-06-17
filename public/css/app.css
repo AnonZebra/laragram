@@ -1091,6 +1091,7 @@ button,
   padding: 0;
   border-bottom: solid #333 0.1rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .photo-detail-image {
