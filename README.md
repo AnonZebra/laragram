@@ -16,16 +16,18 @@ Create a .env file and configure it, in accordance with your database and enviro
 It is recommended that you also configure the '.env.testing' file, for enabling running tests on your own setup (with `php artisan test`).
 
 Once you have set up your .env file, `cd` to the project root directory and run the following commands:
-`composer install --no-interaction`
-`php artisan storage:link`
-`php artisan migrate --force -vvv`
-`php artisan migrate --env=testing --force -vvv`
-`php artisan db:seed`
+```
+$ composer install --no-interaction
+$ php artisan storage:link
+$ php artisan migrate --force -vvv
+$ php artisan migrate --env=testing --force -vvv
+$ php artisan db:seed
+```
 
 ## Permissions
 Note that since media files are handled directly by the application, the web server user (eg Apache's '_www' user), or that user's group, needs read/write permission for the storage directory. For the same reason, the user running `php artisan test` __also__ needs storage read/write permission, since Laravel's storage-related mocking creates temporary files in the storage directory.
 
-## Running the server
+## Deployment
 Once you've installed, got your database running, and made sure that permissions are correctly set, you need to serve the 'public' directory's 'index.php' file with whatever web server (Apache, Nginx etc.) you choose.
 
 ## Features

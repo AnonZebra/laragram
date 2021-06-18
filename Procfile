@@ -1,2 +1,2 @@
-release: php artisan migrate --force -vvv
+release: make larasetup
 web: vendor/bin/heroku-php-apache2 public/
